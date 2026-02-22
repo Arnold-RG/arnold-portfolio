@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rurangwa Arnold — Software Engineer & Lecturer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+  :root {
+  --bg: #05060a;
+  --panel: #0e1418;
+  --muted: #9aa3ad;
+  --accent: #22d3a6;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  }
+  
+  *, :before, :after { box-sizing: border-box; }
+  
+  html, body {
+  height: 100%; margin: 0;
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(34, 211, 166, 0.06), transparent),
+  linear-gradient(180deg, var(--bg), #030305);
+  color: #e6eef6; -webkit-font-smoothing: antialiased;
+  }
+  
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+  
+  .site-header {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: linear-gradient(180deg, rgba(6, 8, 12, 0.95), #020204);
+  backdrop-filter: blur(12px); padding: 8px 0;
+  z-index: 120; border-bottom: 1px solid var(--glass-2);
+  }
+  
+  .header-inner { display: flex; justify-content: space-between; align-items: center; }
+  
+  .logo-image {
+  width: 40px; height: 40px; border-radius: 8px; object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  }
+  
+  .brand h1 { font-size: 16px; letter-spacing: 0.3px; margin: 0; }
+  .brand p { margin: 0 0 0 2px; color: var(--muted); font-size: 12px; }
+  
+  .nav-left { display: flex; align-items: center; gap: 10px; }
+  .nav-right { display: flex; gap: 8px; align-items: center; }
+  
+  .nav-link {
+  color: var(--muted); text-decoration: none; padding: 6px 10px;
+  border-radius: 8px; font-weight: 500; font-size: 14px; transition: all 0.2s ease;
+  }
+  .nav-link:hover { color: #fff; background: var(--glass); }
+  
+  .projects-menu { position: relative; }
+  .projects-submenu {
+  position: absolute; top: 100%; right: 0;
+  background: var(--panel); border: 1px solid var(--glass); border-radius: 8px; min-width: 160px;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: all 0.2s ease; z-index: 130; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  }
+  .projects-menu:hover .projects-submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .projects-submenu a {
+  display: block; padding: 10px 16px; font-size: 14px;
+  color: var(--muted); text-decoration: none;
+  }
+  .projects-submenu a:hover { background: var(--glass); color: #fff; }
+  
+  body { padding-top: 60px; }
+  
+  .hero { padding: 64px 0; }
+  .hero-title { font-size: 32px; font-weight: 800; line-height: 1.02; margin: 0; }
+  .hero-subtitle { color: var(--muted); margin: 8px 0 10px; font-weight: 600; }
+  .hero-description { color: var(--muted); max-width: 64ch; }
+  .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  
+  .btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
+  border-radius: 12px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent);
+  color: #e6eef6; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.06);
+  font-weight: 600; transition: all 0.2s ease;
+  }
+  .btn:hover { background: var(--glass); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(34, 211, 166, 0.2); }
+  .btn.secondary { background: transparent; border: 1px solid rgba(255, 255, 255, 0.08); }
+  
+  /* CORE TEMPLATE SYSTEM - Every section uses this */
+  .panel { background: transparent; padding: 40px 0; }
+  
+  .section-box {
+  padding: 24px; border-radius: 16px; border: 1px solid var(--glass);
+  box-shadow: 0 16px 48px rgba(2, 6, 8, 0.6);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  }
+  
+  /* UNIQUE COLORED BORDERS FOR EACH SECTION */
+  .variant-1 { border-left: 4px solid #22d3a6; } /* Green - Hero/Skills */
+  .variant-2 { border-left: 4px solid #60a5fa; } /* Blue - About/Experience */
+  .variant-3 { border-left: 4px solid #f472b6; } /* Pink - Certificates/Education */
+  .variant-4 { border-left: 4px solid #f59e0b; } /* Orange - Projects */
+  .variant-5 { border-left: 4px solid #a78bfa; } /* Purple - Contact/Hobbies */
+  
+  .panel h3 { font-size: 22px; margin-bottom: 16px; }
+  
+  .panel-box {
+  background: linear-gradient(180deg, var(--panel), #0a0f12); padding: 20px;
+  border-radius: 16px; border: 1px solid var(--glass);
+  box-shadow: 0 12px 40px rgba(2, 6, 8, 0.7);
+  }
+  
+  /* SECTION-SPECIFIC STYLES */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; align-items: start; }
+  .profile-img {
+  width: 160px; height: 160px; border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--glass); background: linear-gradient(180deg, #0b1113, #071017);
+  }
+  
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .skill-item {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent); padding: 12px;
+  border-radius: 12px; border: 1px solid var(--glass); color: #eaf6f0;
+  font-weight: 600; font-size: 14px; text-align: center; transition: all 0.2s ease;
+  }
+  .skill-item:hover { background: var(--glass); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34, 211, 166,
+  0.15); }
+  
+  /* PROJECTS SECTION - NOW MATCHES EXACT TEMPLATE */
+  .projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 20px;
+  }
+  
+  .project-card {
+  background: linear-gradient(180deg, #0b0f12, #050608); padding: 20px; border-radius: 16px;
+  border: 1px solid var(--glass); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease; overflow: hidden;
+  }
+  .project-card:hover {
+  transform: translateY(-6px); box-shadow: 0 20px 48px rgba(245, 158, 11, 0.25);
+  border-color: #f59e0b;
+  }
+  .project-card h4 { margin: 0 0 12px; font-size: 18px; font-weight: 700; color: #fff; }
+  .project-card p { color: var(--muted); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
+  
+  .event-item { margin-bottom: 20px; }
+  .event-item h5 { margin: 0 0 8px; font-size: 16px; }
+  .event-item p { color: var(--muted); margin: 0 0 12px; }
+  
+  /* RIGHT PANEL - Slides from right */
+  .project-panel {
+  position: fixed; top: 0; right: -420px; width: 420px; height: 100vh;
+  background: linear-gradient(180deg, rgba(14,20,24,0.98), rgba(10,15,18,0.95));
+  backdrop-filter: blur(20px); border-left: 1px solid var(--glass);
+  z-index: 1000; transition: right 0.3s ease; padding: 24px; overflow-y: auto;
+  }
+  .project-panel.open { right: 0; }
+  .panel-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7); opacity: 0; visibility: hidden;
+  z-index: 999; transition: all 0.3s ease;
+  }
+  .panel-overlay.open { opacity: 1; visibility: visible; }
+  
+  .panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--glass-2);
+  }
+  .close-btn {
+  background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer;
+  padding: 4px; border-radius: 50%; transition: all 0.2s ease;
+  }
+  .close-btn:hover { color: #fff; background: var(--glass); }
+  
+  .project-form-table {
+  width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.02);
+  border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .project-form-table th, .project-form-table td { padding: 16px; text-align: left; border-bottom: 1px solid
+  var(--glass-2); }
+  .project-form-table th {
+  background: var(--glass); color: #f59e0b; font-size: 14px; font-weight: 600;
+  }
+  .project-form-table input, .project-form-table textarea, .project-form-table select {
+  width: 100%; padding: 12px; border: 1px solid var(--glass-2);
+  background: rgba(255,255,255,0.05); color: #fff; border-radius: 8px;
+  font-family: inherit; transition: border-color 0.2s;
+  }
+  .project-form-table input:focus, .project-form-table textarea:focus {
+  outline: none; border-color: #f59e0b; box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+  }
+  .project-form-table textarea { resize: vertical; min-height: 80px; }
+  .form-actions { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; padding-top: 20px; }
+  
+  @media (max-width: 980px) {
+  .container { padding: 20px; }
+  .hero-title { font-size: 28px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .project-panel { width: 100vw; right: -100vw; }
+  .project-panel.open { right: 0; }
+  }
+  
+  @media (max-width: 560px) {
+  .nav-right { display: none; }
+  .projects-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* CONTACT SECTION STYLES */
+.contact-content {
+  display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start;
+}
+
+.contact-form {
+  flex: 1;
+}
+
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+}
+
+.form-group {
+  position: relative; margin-bottom: 24px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%; padding: 16px 20px; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-2); border-radius: 12px; color: #fff;
+  font-family: inherit; font-size: 16px; transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none; border-color: #a78bfa; box-shadow: 0 0 0 3px rgba(167,139,250,0.2);
+  background: rgba(255,255,255,0.08);
+}
+
+.form-group label {
+  position: absolute; left: 20px; top: 16px; color: var(--muted);
+  font-size: 14px; font-weight: 500; pointer-events: none;
+  transition: all 0.3s ease; transform: translateY(0);
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label,
+.form-group textarea:focus + label,
+.form-group textarea:valid + label {
+  top: -8px; left: 12px; font-size: 12px; color: #a78bfa;
+  background: var(--panel); padding: 0 8px;
+}
+
+.form-group textarea { min-height: 140px; resize: vertical; }
+
+.contact-note {
+  color: var(--muted); font-size: 13px; margin-top: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.contact-info {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border-radius: 16px; padding: 28px; border: 1px solid var(--glass);
+}
+
+.contact-header h4 { margin-bottom: 8px; }
+.contact-header p { margin: 0; }
+
+.contact-items {
+  display: flex; flex-direction: column; gap: 20px; margin: 24px 0;
+}
+
+.contact-item {
+  display: flex; gap: 16px; padding: 20px; background: rgba(255,255,255,0.02);
+  border-radius: 12px; border: 1px solid var(--glass-2); transition: all 0.2s ease;
+}
+
+.contact-item:hover {
+  background: var(--glass); transform: translateX(4px);
+  box-shadow: 0 12px 32px rgba(167,139,250,0.15);
+}
+
+.contact-icon {
+  width: 48px; height: 48px; background: linear-gradient(135deg, #a78bfa, #c084fc);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #fff; flex-shrink: 0;
+}
+
+.contact-details h5 { margin: 0 0 4px; font-size: 15px; }
+.contact-link {
+  color: #e6eef6; text-decoration: none; font-size: 14px;
+  transition: all 0.2s ease;
+}
+.contact-link:hover { color: #a78bfa; }
+.contact-location { color: var(--muted); font-size: 14px; margin: 0; }
+
+.social-section { margin-top: 32px; }
+.social-section h5 { margin-bottom: 16px; }
+.social-links {
+  display: flex; gap: 12px;
+}
+.social-link {
+  width: 44px; height: 44px; border-radius: 12px; display: flex;
+  align-items: center; justify-content: center; color: var(--muted);
+  transition: all 0.3s ease; text-decoration: none;
+}
+.social-link:hover {
+  color: #fff; transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(167,139,250,0.3);
+}
+.social-link.github:hover { background: rgba(0,0,0,0.8); }
+.social-link.linkedin:hover { background: #0e76a8; }
+
+/* FOOTER STYLES */
+.site-footer {
+  padding: 60px 0 40px; background: transparent;
+  border-top: 1px solid var(--glass-2); margin-top: 80px;
+}
+
+.footer-section-box {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  border-radius: 24px; padding: 40px; border: 1px solid var(--glass);
+  box-shadow: 0 24px 64px rgba(2,6,8,0.6);
+}
+
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; align-items: start;
+}
+
+.footer-column h5,
+.footer-column h4 { 
+  color: #fff; margin-bottom: 20px; font-weight: 700;
+}
+
+.footer-brand p { margin: 0 0 12px; }
+.location {
+  font-size: 13px; color: var(--accent); font-weight: 600;
+}
+
+.footer-links {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.footer-link {
+  color: var(--muted); text-decoration: none; font-size: 14px;
+  padding: 8px 0; transition: all 0.2s ease; opacity: 0.8;
+}
+.footer-link:hover { color: #fff; opacity: 1; padding-left: 8px; }
+
+.footer-contact { margin-top: 24px; }
+.footer-email {
+  color: #a78bfa; text-decoration: none; font-size: 14px;
+  font-weight: 500;
+}
+.footer-email:hover { text-decoration: underline; }
+
+.footer-bottom {
+  grid-column: 1 / -1; margin-top: 48px; padding-top: 32px;
+  border-top: 1px solid var(--glass-2);
+}
+
+.footer-divider {
+  height: 1px; background: linear-gradient(90deg, transparent, var(--glass), transparent);
+  margin-bottom: 20px;
+}
+
+.footer-copy {
+  margin: 0; text-align: center; color: var(--muted); font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px) {
+  .contact-content { grid-template-columns: 1fr; gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+}
+
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; }
+  .social-links { justify-content: center; }
+  .footer-grid { gap: 24px; }
+}
+
+/* CERTIFICATES SECTION */
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.certificate-card {
+  background: linear-gradient(180deg, rgba(244, 114, 182, 0.1), transparent);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.certificate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f472b6, #fb7185);
+}
+
+.certificate-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(244, 114, 182, 0.25);
+  border-color: #f472b6;
+}
+
+.certificate-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+}
+
+.certificate-org {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+/* LANGUAGES SECTION */
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.language-card {
+  background: rgba(255,255,255,0.03);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--glass);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.language-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f472b6, transparent);
+}
+
+.language-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px 0;
+}
+
+.language-level {
+  color: #f472b6;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* HOBBIES SECTION */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.hobby-card {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.08), rgba(251, 113, 133, 0.05));
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(244, 114, 182, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.hobby-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(244, 114, 182, 0.03) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hobby-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 48px rgba(244, 114, 182, 0.2);
+  border-color: #f472b6;
+}
+
+.hobby-card:hover::before {
+  opacity: 1;
+}
+
+.hobby-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px 0;
+}
+
+.hobby-desc {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* RESPONSIVE FOR NEW SECTIONS */
+@media (max-width: 980px) {
+  .certificates-grid,
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .languages-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .certificates-grid,
+  .hobbies-grid {
+    gap: 16px;
+  }
+  
+  .languages-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* EDUCATION SECTION - RED ACCENT (variant-6) */
+.variant-6 { border-left: 4px solid #ef4444; } /* Red - Education */
+
+.education-card {
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.06), transparent);
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.education-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ef4444, #f87171, #ef4444);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.education-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 80px rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+}
+
+.education-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: start;
+}
+
+.education-degree h4 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #fff, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.degree-specialization {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), transparent);
+  color: #ef4444;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.education-institution {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.03);
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--glass);
+}
+
+.institution-logo {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.education-institution h5 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.institution-link {
+  color: #ef4444;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.institution-link:hover {
+  text-decoration: underline;
+  color: #f87171;
+}
+
+.education-meta {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.education-date,
+.education-location {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  background: rgba(34, 211, 166, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(34, 211, 166, 0.2);
+}
+
+.education-description p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 24px 0;
+}
+
+.education-skills {
+  margin-bottom: 24px;
+}
+
+.education-skills h6 {
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  background: rgba(239, 68, 68, 0.25);
+  transform: translateY(-1px);
+}
+
+.education-achievements {
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), transparent);
+  border-radius: 14px;
+  border-left: 4px solid #ef4444;
+}
+
+.achievement-highlight {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px) {
+  .education-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .education-meta {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .education-card {
+    padding: 24px;
+  }
+  
+  .skills-tags {
+    justify-content: center;
+  }
+}
+
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta name="theme-color" content="#0b1220" />
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <header class="site-header">
+    <div class="container header-inner">
+        <div class="nav-left" style="display:flex;align-items:center;gap:12px">
+        <img src="logo.png" alt="logo" class="logo-image" style="width:48px;height:48px;border-radius:8px;object-fit:cover" />
+        <div class="brand">
+          <h1 id="profileName">Rurangwa Arnold</h1>
+          <p id="profileTitle">Computer Engineer & cybersecurity infranstucture </p>
+        </div>
+      </div>
+      <nav class="nav-right">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#certificates">Certificates</a>
+        <a class="nav-link" href="#languages">Languages</a>
+        <a class="nav-link" href="#hobbies">Hobbies</a>
+        <!-- Keep your navbar projects-menu as is -->
+        <div class="projects-menu">
+          <a class="nav-link" href="#projects">
+            Projects <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+          </a>
+          <div class="projects-submenu">
+            <a href="#" onclick="toggleProjectPanel()"><i class="fas fa-plus"></i> Add New Project</a>
+            <a href="#projects"><i class="fas fa-eye"></i> View Projects</a>
+          </div>
+        </div>
+        
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-link" href="Rurangwa-Arnold-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="panel hero">
+      <div class="container">
+        <div class="section-box variant-1">
+        <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <h2 class="hero-title"><span id="heroName">Rurangwa Arnold</span></h2>
+            <p class="hero-subtitle">Computer Engineer & cybersecurity infranstucture</p>
+            <p class="hero-description" id="heroBio"> I Build and design software systems and the system security</p>
+            <div class="hero-buttons" style="margin-top:12px">
+              <a href="#projects" class="btn">View Projects</a>
+              <a href="#contact" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Get in touch</a>
+              <a href="Rurangwa-Arnold-Resume.pdf" target="_blank" rel="noopener" class="btn secondary" style="background:transparent;border:1px solid rgba(255,255,255,0.06);">Download Resume</a>
+            </div>
+          </div>
+          <div style="width:160px">
+            <div class="profile-img" style="width:160px;height:160px;border-radius:12px;overflow:hidden">
+              <img src="logo.png" alt="profile" style="width:100%;height:100%;object-fit:cover" />
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="panel">
+      <div class="container">
+        <div class="section-box variant-2">
+        <h3>About Me</h3>
+        <p id="profileBio" class="lead">
+        Hello and welcome—my name is Arnold Rurangwa, I'm 25-year-old young man from Rwanda, currently based in Poland, where
+        I’ve spent the past 4 years gaining experience and expanding my skills.
+        I specialize in cybersecurity and IT infrastructure , focusing on building secure, scalable, and resilient systems
+        from the ground up.
+        My passion for technology drives me to explore systems, networks, and software development, gaining hands-on
+        experience along the way.
+        
+        I am fascinated by the challenges of protecting systems and data in today’s digital landscape.
+        I enjoy designing solutions that balance performance, security, and reliability.
+        I approach complex problems methodically, ensuring that every solution is practical and effective.
+        I strive to keep learning and staying updated with the latest technologies and best practices.
+        My goal is to create technology that is not only functional but secure, robust, and trustworthy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION SECTION - Perfect Template -->
+    <section id="education" class="panel">
+      <div class="container">
+        <div class="section-box variant-3">
+          <h3>Education</h3>
+          <div class="panel-box">
+            <div class="education-card">
+              <div class="education-header">
+                <div class="education-degree">
+                  <h4>Bachelor's Degree</h4>
+                  <span class="degree-specialization">Computer Engineering specialized in Cybersecurity</span>
+                </div>
+                <div class="education-institution">
+                  <div class="institution-logo"></div>
+                  <div>
+                    <h5>Wrocławska Akademia Biznesu WSH</h5>
+                    <a href="https://wab.edu.pl/" target="_blank" rel="noopener" class="institution-link">Visit Website</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="education-meta">
+                <span class="education-date">Mar 2022 – Sep 2025</span>
+                <span class="education-location">Wrocław, Poland</span>
+              </div>
+    
+              <div class="education-description">
+                <p>Full-time Computer Engineering student with a specialization in Cybersecurity. Gained comprehensive
+                  practical and theoretical knowledge in software development, network security, and systems architecture.
+                </p>
+              </div>
+    
+              <div class="education-skills">
+                <h6>Key Coursework:</h6>
+                <div class="skills-tags">
+                  <span class="skill-tag">Cisco Networking</span>
+                  <span class="skill-tag">Digital Forensics</span>
+                  <span class="skill-tag">Artificial Intelligence</span>
+                  <span class="skill-tag">Object-Oriented Programming</span>
+                  <span class="skill-tag">Python & Flutter</span>
+                  <span class="skill-tag">Network Security</span>
+                  <span class="skill-tag">Digital Electronics</span>
+                </div>
+              </div>
+    
+              <div class="education-achievements">
+                <p class="achievement-highlight">Hands-on labs and projects in network attack detection/prevention, mobile
+                  app development, web applications, telecommunications, and cybersecurity defense strategies.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section id="skills" class="panel">
+      <div class="container">
+        <div class="section-box variant-1">
+          <h3>My Skills</h3>
+          <div class="panel-box">
+            <ul id="skillsList" class="skills-grid" style="list-style:none;padding:0;margin:8px 0;">
+              <li class="skill-item">Python</li>
+              <li class="skill-item">Java</li>
+              <li class="skill-item">C++</li>
+              <li class="skill-item">PHP</li>
+              <li class="skill-item">JavaScript</li>
+              <li class="skill-item">TypeScript</li>
+              <li class="skill-item">Dart</li>
+              <li class="skill-item">Flutter</li>
+              <li class="skill-item">React</li>
+              <li class="skill-item">Node.js / Express</li>
+              <li class="skill-item">FastAPI / Flask</li>
+              <li class="skill-item">MySQL</li>
+              <li class="skill-item">PostgreSQL</li>
+              <li class="skill-item">SQLite</li>
+              <li class="skill-item">MongoDB</li>
+              <li class="skill-item">Redis</li>
+              <li class="skill-item">Windows</li>
+              <li class="skill-item">Linux (Ubuntu, Kali)</li>
+              <li class="skill-item">Android</li>
+              <li class="skill-item">AWS</li>
+              <li class="skill-item">Azure</li>
+              <li class="skill-item">Docker</li>
+              <li class="skill-item">Kubernetes</li>
+              <li class="skill-item">CI/CD (GitHub Actions, Jenkins)</li>
+              <li class="skill-item">Terraform / Ansible</li>
+              <li class="skill-item">HTML5 & CSS3</li>
+              <li class="skill-item">Bootstrap</li>
+              <li class="skill-item">REST APIs / JSON</li>
+              <li class="skill-item">GraphQL</li>
+              <li class="skill-item">Network Security</li>
+              <li class="skill-item">Threat Detection</li>
+              <li class="skill-item">Vulnerability Assessment</li>
+              <li class="skill-item">Malware Analysis</li>
+              <li class="skill-item">Encryption</li>
+              <li class="skill-item">Cisco Packet Tracer</li>
+              <li class="skill-item">Wireshark</li>
+              <li class="skill-item">Nmap</li>
+              <li class="skill-item">TensorFlow / PyTorch</li>
+              <li class="skill-item">Selenium / pytest</li>
+              <li class="skill-item">System Design & Algorithms</li>
+              <li class="skill-item">Git / GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="panel">
+      <div class="container">
+        <div class="section-box variant-2">
+          <h3>Professional Experience</h3>
+          <div class="panel-box">
+            <ul id="eventsList" class="events-list">
+              <li class="event-item">
+                <h5>Customer Support Specialist — Tecno Mobile <small class="muted-small">Sep 2019 – Dec 2021 — Kigali, Rwanda</small></h5>
+                <ul>
+                  <li>I assisted customers with setting up their devices, guiding them through usage, and solving basic tech issues.</li>
+                  <li>I clearly explained product features, pricing, current promotions, and warranty terms to help customers before buying.</li>
+                  <li>I stayed professional and polite when handling complaints, aiming to solve problems quickly or escalate them when needed.</li>
+                  <li>I treated all customer data with care, following company rules to make sure everything stayed private and secure.</li>
+                  <li>I regularly attended training sessions to stay updated on new products and company policies.</li>
+                  <li>I worked closely with my teammates to reach sales targets and maintain customer satisfaction.</li>
+                  <li>I always followed safety rules and company guidelines to keep things running smoothly.</li>
+                </ul>
+              </li>
+              <li class="event-item">
+                <h5>E-Learning Content Developer Internship (remote) — Escola S.A <small class="muted-small">Feb 2023 – Jul 2023 — Warsaw, Poland</small></h5>
+                <ul>
+                  <li>I designed and created E-learning materials like quizzes, tutorials, presentations, and documents to help people learn better.</li>
+                  <li>I researched new tech trends, especially in areas like AI, and turned that info into clear and useful content.</li>
+                  <li>I carefully checked everything I wrote for spelling, grammar, clarity, and accuracy to make sure it was easy to follow.</li>
+                  <li>I joined team meetings and shared ideas on how we could improve the learning experience for everyone.</li>
+                </ul>
+              </li>
+              <li class="event-item">
+                <h5>Logistics — LG Energy Solution (QSENSE) <small class="muted-small">May 2022 – Aug 2025 — Wroclaw, Poland</small></h5>
+                <ul>
+                  <li>I prepared products for shipping by labeling, packing, and making sure everything was secure and ready to go.</li>
+                  <li>I checked product quality, caught any issues with materials, and fixed problems right away when needed.</li>
+                  <li>I helped keep the workspace clean and safe by following safety rules and sticking to a regular cleaning routine.</li>
+                  <li>I tracked all shipments and inventory levels carefully to keep records accurate and up to date.</li>
+                  <li>I also supported supervisors by helping train new team members on safety, equipment, and company procedures.</li>
+                </ul>
+              </li>
+              <li class="event-item">
+                <h5>Map Data Review — Cognizant <small class="muted-small">Sep 2025 – Present — Krakow, Poland</small></h5>
+                <ul>
+                  <li>I review maps data to assess business information accuracy based on client policies.</li>
+                  <li>I engage with businesses, predominantly via quick outbound phone calls, to verify their business information.</li>
+                  <li>I update and verify client platforms based on verified information.</li>
+                  <li>I make well-balanced decisions based on market-specific knowledge.</li>
+                  <li>I have good communication skills and attention to detail.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="panel">
+      <div class="container">
+        <div class="section-box variant-3">
+          <h3>Certificates</h3>
+          <div class="panel-box">
+            <div class="certificates-grid">
+              <div class="certificate-card">
+                <div class="certificate-title">Exploring Internet of Things with Cisco Packet Tracer</div>
+                <div class="certificate-org">Cisco Networking Academy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">CCNA: Enterprise Networking, Security, and Automation (ENSA) Supplemental Module</div>
+                <div class="certificate-org">Cisco Networking Academy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Python Essentials 2</div>
+                <div class="certificate-org">Python</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Ethical Hacker</div>
+                <div class="certificate-org">Cisco Networking Academy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Introduction to Cybersecurity</div>
+                <div class="certificate-org">Cisco Networking Academy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Enterprise Networking, Security, and Automation</div>
+                <div class="certificate-org">Cisco Networking Academy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">The Complete Nmap Ethical Hacking Course: Network Security</div>
+                <div class="certificate-org">Udemy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">IT Help Desk Professional</div>
+                <div class="certificate-org">Google Career Certificates</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Full Python Bootcamp</div>
+                <div class="certificate-org">Udemy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Time Management Mastery: Do More, Stress Less</div>
+                <div class="certificate-org">Udemy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Kali Linux Hacking Lab</div>
+                <div class="certificate-org">Udemy</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Build a website with WordPress (Coursera Project Network)</div>
+                <div class="certificate-org">Coursera</div>
+              </div>
+              <div class="certificate-card">
+                <div class="certificate-title">Network Hacking From Scratch (WiFi & Wired)</div>
+                <div class="certificate-org">Udemy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section id="languages" class="panel">
+      <div class="container">
+        <div class="section-box variant-3">
+          <h3>Languages</h3>
+          <div class="panel-box">
+            <div class="languages-grid">
+              <div class="language-card">
+                <div class="language-name">Kinyarwanda</div>
+                <div class="language-level">Native speaker</div>
+              </div>
+              <div class="language-card">
+                <div class="language-name">English</div>
+                <div class="language-level">C1 Advanced</div>
+              </div>
+              <div class="language-card">
+                <div class="language-name">French</div>
+                <div class="language-level">C1 Advanced</div>
+              </div>
+              <div class="language-card">
+                <div class="language-name">Swahili</div>
+                <div class="language-level">C1 Advanced</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section id="hobbies" class="panel">
+      <div class="container">
+        <div class="section-box variant-5">
+          <h3>Hobbies & Interests</h3>
+          <div class="panel-box">
+            <div class="hobbies-grid">
+              <div class="hobby-card">
+                <div class="hobby-title">Coding Challenges</div>
+                <div class="hobby-desc">Learning new programming languages, frameworks, and solving complex problems</div>
+              </div>
+              <div class="hobby-card">
+                <div class="hobby-title">Community Events</div>
+                <div class="hobby-desc">Participating in tech meetups and contributing to open source projects</div>
+              </div>
+              <div class="hobby-card">
+                <div class="hobby-title">Traveling</div>
+                <div class="hobby-desc">Exploring new cultures, cities, and experiencing different ways of life</div>
+              </div>
+              <div class="hobby-card">
+                <div class="hobby-title">Gaming</div>
+                <div class="hobby-desc">Strategy games, competitive gaming, and esports</div>
+              </div>
+              <div class="hobby-card">
+                <div class="hobby-title">Fitness</div>
+                <div class="hobby-desc">Swimming, gym workouts, and playing basketball</div>
+              </div>
+              <div class="hobby-card">
+                <div class="hobby-title">Praying & Meditation</div>
+                <div class="hobby-desc">Spiritual growth and maintaining inner peace</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- PROJECTS SECTION - Perfect Template Match -->
+    <section id="projects" class="panel">
+      <div class="container">
+        <div class="section-box variant-4">
+          <h3>Featured Projects</h3>
+          <div class="panel-box">
+            <div class="projects-grid" id="projectsGrid">
+              <!-- Dynamic projects load here -->
+              <div class="project-card">
+                <h4>Secure API Gateway</h4>
+                <p>Production-grade API gateway with JWT auth, rate limiting, and encryption. Built with FastAPI & Redis.
+                </p>
+                <div style="display: flex; gap: 8px;">
+                  <a href="#" class="btn secondary" style="font-size: 13px; padding: 8px 16px;">Live Demo</a>
+                  <a href="#" class="btn secondary" style="font-size: 13px; padding: 8px 16px;">GitHub</a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h4>Cyber Threat Detector</h4>
+                <p>Machine learning system for real-time threat detection and vulnerability assessment using network traffic
+                  analysis.</p>
+                <div style="display: flex; gap: 8px;">
+                  <a href="#" class="btn secondary" style="font-size: 13px; padding: 8px 16px;">Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Right Side Project Panel (keep this before </body>) -->
+    <div class="panel-overlay" id="panelOverlay" onclick="closeProjectPanel()"></div>
+    <div class="project-panel" id="projectPanel">
+      <div class="panel-header">
+        <h3 id="panelTitle">Add New Project</h3>
+        <button class="close-btn" onclick="closeProjectPanel()">×</button>
+      </div>
+    
+      <form id="projectForm">
+        <table class="project-form-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label>Project Title</label></td>
+              <td><input type="text" id="projectTitle" required></td>
+            </tr>
+            <tr>
+              <td><label>Description</label></td>
+              <td><textarea id="projectDesc" required placeholder="Brief project description..."></textarea></td>
+            </tr>
+            <tr>
+              <td><label>Live URL</label></td>
+              <td><input type="url" id="projectUrl" placeholder="https://..."></td>
+            </tr>
+            <tr>
+              <td><label>GitHub Repo</label></td>
+              <td><input type="url" id="projectRepo" placeholder="https://github.com/..."></td>
+            </tr>
+            <tr>
+              <td><label>Tech Stack</label></td>
+              <td><input type="text" id="projectTech" placeholder="Python, FastAPI, Docker"></td>
+            </tr>
+            <tr>
+              <td><label>Featured?</label></td>
+              <td>
+                <select id="projectFeatured">
+                  <option value="false">No</option>
+                  <option value="true">Yes (show first)</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-actions">
+          <button type="button" class="btn secondary" onclick="closeProjectPanel()">Cancel</button>
+          <button type="submit" class="btn" style="background: #f59e0b; border-color: #f59e0b;">Save Project</button>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- Resume moved to nav as direct PDF link -->
+
+    <!-- CONTACT SECTION - Perfect Template -->
+    <section id="contact" class="panel">
+      <div class="container">
+        <div class="section-box variant-5">
+          <h3>Get In Touch</h3>
+          <div class="panel-box">
+            <div class="contact-content">
+              <!-- Contact Form -->
+              <div class="contact-form">
+                <form id="contactForm">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <input id="contactName" name="name" placeholder="" required />
+                      <label>Your Name:</label>
+                    </div>
+                    <div class="form-group">
+                      <input id="contactEmail" name="email" type="email" placeholder="" required />
+                      <label>Email Address:</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <textarea id="contactInfo" name="message"
+                      placeholder=" " required></textarea>
+                    <label>Your Message Here:</label>
+                  </div>
+                  <div class="form-actions">
+                    <button type="button" id="saveProfile" class="btn secondary">Save Contact</button>
+                    <button type="submit" id="sendMessage" class="btn">Send Message</button>
+                  </div>
+                </form>
+                <p class="contact-note">“Thanks for reaching out! I’ll get back to you as soon as I can.”
+                </p>
+              </div>
+    
+              <!-- Contact Info Cards -->
+              <aside class="contact-info">
+                <div class="contact-header">
+                  <h4>Reach Me Directly</h4>
+                  <p class="muted-small">Prefer direct contact? Use these links.</p>
+                </div>
+    
+                <div class="contact-items">
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                      <h5>Email</h5>
+                      <a href="mailto:rurangwaarnold32@gmail.com" class="contact-link">rurangwaarnold32@gmail.com</a>
+                    </div>
+                  </div>
+    
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                      <h5>Phone</h5>
+                      <a href="tel:+48575217930" class="contact-link">+48 575 217 930</a>
+                    </div>
+                  </div>
+    
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                      <h5>Location</h5>
+                      <p class="contact-location">Kraków, Poland</p>
+                    </div>
+                  </div>
+                </div>
+    
+                <!-- Social Links -->
+                <div class="social-section">
+                  <h5>Connect</h5>
+                  <div class="social-links">
+                    <a href="https://github.com/Arnold-RG" class="social-link github" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/rurangwa-arnold-53b90520b/" class="social-link linkedin" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/rurangwa.rg/" class="social-link facebook" aria-label="Facebook"><i
+                        class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/rurangwa.rg/" class="social-link instagram" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <!-- FOOTER SECTION - Perfect Template -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-section-box">
+        <div class="footer-grid">
+          <!-- Left Column -->
+          <div class="footer-column">
+            <div class="footer-brand">
+              <h4>Rurangwa Arnold</h4>
+              <p class="muted-small">Computer Engineer & cybersecurity infranstucture</p>
+              <p class="muted-small location">Kraków, Poland</p>
+            </div>
+          </div>
+  
+          <!-- Middle Column -->
+          <div class="footer-column">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="#home" class="footer-link">Home</a></li>
+              <li><a href="#projects" class="footer-link">Projects</a></li>
+              <li><a href="#skills" class="footer-link">Skills</a></li>
+              <li><a href="#about" class="footer-link">About</a></li>
+              <li><a href="#contact" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+  
+          <!-- Right Column -->
+          <div class="footer-column">
+            <h5>Follow Me</h5>
+            <div class="social-links">
+              <a href="https://github.com/Arnold-RG" class="social-link github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/rurangwa-arnold-53b90520b/" class="social-link linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.facebook.com/rurangwa.rg/" class="social-link facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.instagram.com/rurangwa.rg/" class="social-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="footer-contact">
+              <a href="mailto:rurangwaarnold32@gmail.com" class="footer-email">rurangwaarnold32@gmail.com</a>
+            </p>
+          </div>
+  
+          <!-- Bottom Bar -->
+          <div class="footer-bottom">
+            <div class="footer-divider"></div>
+            <p class="footer-copy">
+              © <span id="footerYear"></span> 2026 Rurangwa Arnold. Web Folio . Kraków, Poland.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+>
+
+  <!-- Hidden side panels for adding content -->
+  <!-- Editor panels removed for portfolio public view -->
+
+  <script src="script.js"></script>
+</body>
+</html>
