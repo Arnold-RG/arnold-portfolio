@@ -1,6 +1,6 @@
 # Engineering portfolio
 
-Personal folio and resume for **Arnold Rurangwa**, Computer Engineer.
+Personal folio and resume for **Arnold Rurangwa**, Computer Engineer, ARNOVA Group.
 
 This repository holds a standalone portfolio site and a PDF resume. Live product work lives in the public repositories pinned on [github.com/Arnold-RG](https://github.com/Arnold-RG).
 
