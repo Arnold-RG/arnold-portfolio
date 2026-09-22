@@ -1,6 +1,6 @@
 # Arnold Rurangwa — Engineering Portfolio
 
-Personal site for **Arnold Rurangwa**, Computer Engineer in Kraków, Poland — systems, cybersecurity, frontend, and applied AI.
+Personal site for **Arnold Rurangwa**, Computer Engineer in Kraków, Poland.
 
 **Live:** [https://arnold-rg.github.io/](https://arnold-rg.github.io/)
 
