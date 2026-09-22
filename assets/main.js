@@ -2,6 +2,36 @@
   document.documentElement.classList.add("js");
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) document.documentElement.setAttribute("data-reduced-motion", "");
+
+  /* Theme toggle */
+  const root = document.documentElement;
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  const getTheme = () => root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+
+  const applyTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (_) {}
+    if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#0b1220" : "#f4f6f9");
+    if (themeToggle) {
+      themeToggle.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
+      );
+    }
+  };
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      applyTheme(getTheme() === "dark" ? "light" : "dark");
+    });
+  }
+
+  applyTheme(getTheme());
 
   /* Mobile nav */
   const toggle = document.querySelector(".nav-toggle");
@@ -24,18 +54,17 @@
     });
   }
 
-  /* Project reveal — content visible by default; JS opts into animation */
+  /* Reveal on scroll */
   const reveals = document.querySelectorAll("[data-reveal]");
 
   const markVisible = (el, index = 0) => {
-    el.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
+    el.style.transitionDelay = `${Math.min(index % 5, 4) * 55}ms`;
     el.classList.add("is-visible");
   };
 
   if (reduceMotion || !("IntersectionObserver" in window)) {
     reveals.forEach((el) => el.classList.add("is-visible"));
   } else {
-    /* Keep anything already on-screen visible before the js hide rule applies */
     reveals.forEach((el, index) => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
@@ -63,10 +92,9 @@
     });
   }
 
-  /* Nav accent bar that tracks active section */
-  const sections = ["work", "about", "contact"]
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
+  /* Nav accent bar */
+  const sectionIds = ["work", "experience", "skills", "about", "contact"];
+  const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
   const navLinks = document.querySelectorAll(".nav-links a[data-section]");
   const indicator = document.querySelector(".nav-indicator");
   const navPrimary = document.querySelector(".nav-primary");
@@ -75,8 +103,8 @@
     if (!indicator || !link || !navPrimary) return;
     const parentBox = navPrimary.getBoundingClientRect();
     const linkBox = link.getBoundingClientRect();
-    indicator.style.width = `${linkBox.width * 0.55}px`;
-    indicator.style.transform = `translateX(${linkBox.left - parentBox.left + linkBox.width * 0.225}px)`;
+    indicator.style.width = `${linkBox.width * 0.5}px`;
+    indicator.style.transform = `translateX(${linkBox.left - parentBox.left + linkBox.width * 0.25}px)`;
   };
 
   const setActive = (id) => {
@@ -101,7 +129,7 @@
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         if (visible[0]) setActive(visible[0].target.id);
       },
-      { rootMargin: "-35% 0px -45% 0px", threshold: [0.1, 0.25, 0.5] }
+      { rootMargin: "-32% 0px -50% 0px", threshold: [0.1, 0.25, 0.45] }
     );
     sections.forEach((s) => sectionIo.observe(s));
   }
