@@ -1,21 +1,28 @@
-# Engineering portfolio
+# Arnold Rurangwa — Engineering Portfolio
 
-Personal folio and resume for **Arnold Rurangwa**, Computer Engineer, ARNOVA Group.
+Personal site for **Arnold Rurangwa**, Computer Engineer in Kigali — systems, cybersecurity, and applied AI.
 
-This repository holds a standalone portfolio site and a PDF resume. Live product work lives in the public repositories pinned on [github.com/Arnold-RG](https://github.com/Arnold-RG).
+**Live:** [https://arnold-rg.github.io/arnold-portfolio/](https://arnold-rg.github.io/arnold-portfolio/)
+
+A single-page folio at the repository root (`index.html` + `assets/`), ready for GitHub Pages from the `main` branch root. Selected work covers household finance tooling, scientific ML, Flutter health coaching, Rwanda tourism, traffic mapping, study curricula, retail, and cyber ops desks.
+
+## Local preview
+
+Open `index.html` in a browser, or from the repo root:
+
+```bash
+npx --yes serve .
+```
+
+Then visit the printed local URL.
 
 ## Contents
 
 | Path | What it is |
 | --- | --- |
-| [`Folio/index.html`](./Folio/index.html) | Portfolio site — education, skills, selected work |
-| [`Folio/Rurangwa-Arnold-Resume.pdf`](./Folio/Rurangwa-Arnold-Resume.pdf) | Resume |
-
-## Title
-
-**Computer Engineer** — systems, cybersecurity, and applied AI.
-
-Education: B.Sc. Computer Engineering (Cybersecurity), Wrocławska Akademia Biznesu WSH, 2022–2025.
+| [`index.html`](./index.html) | Live portfolio (GitHub Pages entry) |
+| [`assets/`](./assets/) | Styles, scripts, logo, resume, hero atmosphere |
+| [`Folio/`](./Folio/) | Previous portfolio iteration (kept for reference) |
 
 ## Contact
 
