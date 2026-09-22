@@ -2,7 +2,9 @@
 
 Personal site for **Arnold Rurangwa**, Computer Engineer in Kraków, Poland — systems, cybersecurity, frontend, and applied AI.
 
-**Live:** [https://arnold-rg.github.io/arnold-portfolio/](https://arnold-rg.github.io/arnold-portfolio/)
+**Live:** [https://arnold-rg.github.io/](https://arnold-rg.github.io/)
+
+Also mirrored from this repo at [https://arnold-rg.github.io/arnold-portfolio/](https://arnold-rg.github.io/arnold-portfolio/).
 
 Light-first studio folio at the repository root (`index.html` + `assets/`), with a dark/light theme toggle. Includes selected GitHub projects, experience, skills, certificates, education, and contact details.
 
