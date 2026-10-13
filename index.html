@@ -75,6 +75,7 @@
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
+  <canvas id="stage" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <div class="wrap header-inner">
@@ -176,11 +177,13 @@
         <header class="chapter">
           <p class="chapter-kicker" aria-hidden="true"><span>01</span></p>
           <h2 id="work-title">Selected work</h2>
-          <p class="lede">Public repositories. A live link where one exists, and the source either way.</p>
+          <p class="lede">Eight public projects, set on a ring. Drag it, or use the buttons. A live link where one exists, and the source either way.</p>
         </header>
 
-        <ol class="projects">
-          <li class="project project-lead" data-reveal>
+        <div class="orbit" id="orbit">
+          <div class="orbit-scene" tabindex="0" aria-label="Project ring. Drag to turn it, or use the previous and next buttons.">
+            <div class="orbit-ring" id="orbit-ring">
+          <article class="orbit-card project project-lead" style="--i:0" data-title="Our Money Hub">
             <span class="project-num" aria-hidden="true">01</span>
             <div class="project-main">
               <div class="project-heading">
@@ -193,9 +196,9 @@
                 <li><a href="https://github.com/Arnold-RG/our-money-hub" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:1" data-title="PeakWise">
             <span class="project-num" aria-hidden="true">02</span>
             <div class="project-main">
               <div class="project-heading">
@@ -207,9 +210,9 @@
                 <li><a href="https://github.com/Arnold-RG/peakwise" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:2" data-title="NFL Bot">
             <span class="project-num" aria-hidden="true">03</span>
             <div class="project-main">
               <div class="project-heading">
@@ -222,9 +225,9 @@
                 <li><a href="https://github.com/Arnold-RG/nfl-bot" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:3" data-title="Hamwe Tourism">
             <span class="project-num" aria-hidden="true">04</span>
             <div class="project-main">
               <div class="project-heading">
@@ -237,9 +240,9 @@
                 <li><a href="https://github.com/Arnold-RG/Arnold-RG.github.io" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:4" data-title="Africa Shield Cyber Centre">
             <span class="project-num" aria-hidden="true">05</span>
             <div class="project-main">
               <div class="project-heading">
@@ -251,9 +254,9 @@
                 <li><a href="https://github.com/Arnold-RG/Africa-shield-cyber-centre" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:5" data-title="STANS">
             <span class="project-num" aria-hidden="true">06</span>
             <div class="project-main">
               <div class="project-heading">
@@ -266,9 +269,9 @@
                 <li><a href="https://github.com/Arnold-RG/STANS" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:6" data-title="AI and Data Scientist Roadmap">
             <span class="project-num" aria-hidden="true">07</span>
             <div class="project-main">
               <div class="project-heading">
@@ -281,9 +284,9 @@
                 <li><a href="https://github.com/Arnold-RG/ai-data-scientist-roadmap" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:7" data-title="Boutique La Différence">
             <span class="project-num" aria-hidden="true">08</span>
             <div class="project-main">
               <div class="project-heading">
@@ -295,8 +298,16 @@
                 <li><a href="https://github.com/Arnold-RG/Boutique-la-difference" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
-        </ol>
+          </article>
+            </div>
+          </div>
+          <div class="orbit-controls">
+            <button type="button" class="orbit-btn" id="orbit-prev">Previous</button>
+            <p class="orbit-status" id="orbit-status">01  Our Money Hub</p>
+            <button type="button" class="orbit-btn" id="orbit-next">Next</button>
+          </div>
+          <p class="sr-only" id="orbit-live" aria-live="polite"></p>
+        </div>
       </div>
     </section>
 
@@ -600,6 +611,7 @@
     </div>
   </footer>
 
+  <script src="./assets/stage.js" defer></script>
   <script src="./assets/main.js" defer></script>
 </body>
 </html>
