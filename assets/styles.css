@@ -463,6 +463,47 @@ html[data-theme="dark"] .icon-sun {
   overflow: hidden;
 }
 
+.armillary {
+  position: absolute;
+  z-index: 0;
+  right: clamp(-4rem, 2vw, 6rem);
+  top: 8%;
+  width: min(34rem, 62vw);
+  height: min(34rem, 62vw);
+  transform-style: preserve-3d;
+  pointer-events: none;
+  animation: armillary-turn 14s linear infinite;
+}
+
+.armillary i {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--gold-line) 78%, transparent);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--gold-line) 28%, transparent);
+}
+
+.armillary i:nth-child(1) { transform: rotateX(74deg); }
+.armillary i:nth-child(2) { transform: rotateY(68deg); }
+.armillary i:nth-child(3) { inset: 11%; transform: rotateX(74deg) rotateZ(48deg); }
+.armillary i:nth-child(4) { inset: 22%; transform: rotateY(68deg) rotateZ(-32deg); border-width: 1.5px; }
+
+@keyframes armillary-turn {
+  to { transform: rotateY(360deg) rotateX(18deg); }
+}
+
+@media (max-width: 860px) {
+  .armillary {
+    right: 50%;
+    top: auto;
+    bottom: 1rem;
+    width: min(18rem, 70vw);
+    height: min(18rem, 70vw);
+    margin-right: calc(min(18rem, 70vw) / -2);
+    opacity: 0.85;
+  }
+}
+
 .hero-atmosphere {
   position: absolute;
   top: 0;
@@ -834,8 +875,9 @@ html[data-stage="on"] .hero::after {
 /* Project ring */
 
 .orbit {
-  --orbit-r: clamp(17rem, 30vw, 28rem);
-  --card-w: min(18.5rem, 46vw);
+  --n: 14;
+  --orbit-r: clamp(20rem, 36vw, 34rem);
+  --card-w: min(16.75rem, 72vw);
   position: relative;
   overflow: hidden;
 }
@@ -893,7 +935,7 @@ html[data-stage="on"] .hero::after {
     linear-gradient(140deg, var(--gold-line), rgba(255, 255, 255, 0.55) 38%, rgba(90, 122, 158, 0.55) 68%, var(--gold-line)) border-box;
   box-shadow: 0 28px 50px -32px rgba(16, 24, 32, 0.55);
   z-index: 1;
-  transform: rotateY(calc(var(--i) * 45deg)) translateZ(var(--orbit-r)) translateY(-50%);
+  transform: rotateY(calc(var(--i) * (360deg / var(--n)))) translateZ(var(--orbit-r)) translateY(-50%);
   backface-visibility: hidden;
 }
 
@@ -1538,6 +1580,7 @@ html[data-theme="dark"] .orbit-card.project:hover {
   }
 
   #stage { display: none; }
+  .armillary { animation: none; }
 
   .orbit-scene::after { display: none; }
 
@@ -1630,6 +1673,7 @@ html[data-theme="dark"] .orbit-card.project:hover {
   .copy-btn,
   .hero-atmosphere,
   #stage,
+  .armillary,
   .orbit-controls {
     display: none !important;
   }

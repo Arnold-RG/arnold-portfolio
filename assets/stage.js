@@ -37,7 +37,7 @@
     "float map(vec3 p){",
     "  p.x -= uShift;",
     "  p *= uScale;",
-    "  float t = uTime * 0.12;",
+    "  float t = uTime * 0.48;",
     "  vec3 a = p; a.xz *= rot(t); a.xy *= rot(0.55 + t * 0.35);",
     "  float d = sdTorus(a, vec2(1.22, 0.06));",
     "  vec3 b = p; b.yz *= rot(1.15 + t * 0.45);",
@@ -164,8 +164,8 @@
     gl.uniform1f(uTime, (now - start) / 1000);
     gl.uniform2f(uPointer, pointer.x, pointer.y);
     gl.uniform1f(uDark, darkValue());
-    gl.uniform1f(uShift, window.innerWidth < 860 ? 0.0 : 1.28);
-    gl.uniform1f(uScale, window.innerWidth < 860 ? 1.42 : 1.0);
+    gl.uniform1f(uShift, window.innerWidth < 860 ? 0.15 : 0.42);
+    gl.uniform1f(uScale, window.innerWidth < 860 ? 1.15 : 0.82);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);

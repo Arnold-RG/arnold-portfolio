@@ -34,7 +34,7 @@ Until that setting is changed, publishing from the `main` branch keeps the site 
 | `index.html` | The site |
 | `assets/` | Styles, scripts, fonts, portrait, logo, resume |
 
-The opening view is a brass armillary drawn in the page, and the eight projects sit on a ring you can drag. Both fall back to a still layout when motion is reduced.
+The opening view is a brass armillary that keeps turning, and the fourteen public projects sit on a ring. Both fall back to a still layout when motion is reduced.
 | `Folio/` | Earlier version, kept for reference |
 
 ## Contact

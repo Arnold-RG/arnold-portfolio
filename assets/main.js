@@ -307,8 +307,8 @@
         return;
       }
       var idle = !dragging && !hovering && !focused && inView && document.visibilityState !== "hidden";
-      if (idle && Math.abs(target - angle) < 0.35) target -= 0.03;
-      angle += (target - angle) * 0.09;
+      if (idle) target -= 0.28;
+      angle += (target - angle) * 0.18;
       apply();
       raf = requestAnimationFrame(frame);
     }
