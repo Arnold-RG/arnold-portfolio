@@ -1,33 +1,44 @@
-# Arnold Rurangwa — Engineering Portfolio
+# Arnold Rurangwa
 
-Personal site for **Arnold Rurangwa**, Computer Engineer in Kraków, Poland.
+Personal site for Arnold Rurangwa, computer engineer in Kraków.
 
-**Live:** [https://arnold-rg.github.io/](https://arnold-rg.github.io/)
+**Live:** [https://arnold-rg.github.io/arnold-portfolio/](https://arnold-rg.github.io/arnold-portfolio/)
 
-Also mirrored from this repo at [https://arnold-rg.github.io/arnold-portfolio/](https://arnold-rg.github.io/arnold-portfolio/).
+The repository homepage also points at [https://arnold-rg.github.io/](https://arnold-rg.github.io/). This project publishes the portfolio at the address above.
 
-Light-first studio folio at the repository root (`index.html` + `assets/`), with a dark/light theme toggle. Includes selected GitHub projects, experience, skills, certificates, education, and contact details.
+## Preview locally
 
-## Local preview
-
-Open `index.html` in a browser, or from the repo root:
+From the repository root:
 
 ```bash
-npx --yes serve .
+python3 -m http.server 8000
 ```
 
-## Contents
+Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+
+## Publish
+
+GitHub Pages currently builds this site from the `main` branch, which is what serves the live URL.
+
+`.github/workflows/pages.yml` can publish the same files through GitHub Actions. After that workflow is on `main`, switch the source:
+
+1. Open **Settings → Pages → Build and deployment**.
+2. Set **Source** to **GitHub Actions**.
+
+Until that setting is changed, publishing from the `main` branch keeps the site up to date. The Actions deploy step will fail while Pages is still set to deploy from a branch.
+
+## In this repository
 
 | Path | What it is |
 | --- | --- |
-| [`index.html`](./index.html) | Live portfolio (GitHub Pages entry) |
-| [`assets/`](./assets/) | Styles, scripts, portrait, logo, resume |
-| [`Folio/`](./Folio/) | Previous portfolio iteration (kept for reference) |
+| `index.html` | The site |
+| `assets/` | Styles, script, fonts, portrait, logo, resume |
+| `Folio/` | Earlier version, kept for reference |
 
 ## Contact
 
-- Location: Kraków / Poland
-- Phone: +48 575 217 930
-- GitHub: [Arnold-RG](https://github.com/Arnold-RG)
-- LinkedIn: [rurangwa-arnold](https://www.linkedin.com/in/rurangwa-arnold-53b90520b/)
-- Email: [rurangwaarnold32@gmail.com](mailto:rurangwaarnold32@gmail.com)
+- Kraków, Poland
+- +48 575 217 930
+- [GitHub](https://github.com/Arnold-RG)
+- [LinkedIn](https://www.linkedin.com/in/rurangwa-arnold-53b90520b/)
+- [rurangwaarnold32@gmail.com](mailto:rurangwaarnold32@gmail.com)
