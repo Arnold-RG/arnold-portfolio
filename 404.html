@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page not found — Arnold Rurangwa</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f7f3ec">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f7f3ec;
+      color: #172033;
+      line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: env(safe-area-inset-top);
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #b08948;
+    }
+    main {
+      width: min(40rem, calc(100% - 3rem));
+      margin: 18vh auto 4rem;
+    }
+    p.kicker {
+      margin: 0 0 1rem;
+      font-family: Palatino, "Palatino Linotype", Georgia, serif;
+      font-style: italic;
+      color: #6f5424;
+      font-size: 1.25rem;
+    }
+    h1 {
+      margin: 0;
+      font-family: Palatino, "Palatino Linotype", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+    }
+    p.note { margin: 1.25rem 0 0; max-width: 34rem; color: #243044; font-size: 1.125rem; }
+    a {
+      color: #6f5424;
+      text-underline-offset: 0.2em;
+    }
+    a:focus-visible { outline: 2px solid #6f5424; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">404</p>
+    <h1>This page is not on the site.</h1>
+    <p class="note">The address does not match anything here. <a id="home" href="./">Back to the portfolio</a>.</p>
+  </main>
+  <script>
+    (function () {
+      var onProject = location.pathname === "/arnold-portfolio" || location.pathname.indexOf("/arnold-portfolio/") === 0;
+      var home = document.getElementById("home");
+      if (home) home.setAttribute("href", onProject ? "/arnold-portfolio/" : "./");
+    })();
+  </script>
+</body>
+</html>
