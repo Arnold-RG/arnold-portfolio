@@ -75,6 +75,7 @@
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
+  <canvas id="stage" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <div class="wrap header-inner">
@@ -129,6 +130,7 @@
   <main id="content">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-atmosphere" aria-hidden="true"></div>
+      <div class="armillary" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">
@@ -176,100 +178,46 @@
         <header class="chapter">
           <p class="chapter-kicker" aria-hidden="true"><span>01</span></p>
           <h2 id="work-title">Selected work</h2>
-          <p class="lede">Public repositories. A live link where one exists, and the source either way.</p>
+          <p class="lede">Fourteen public projects, on a ring that keeps turning. Drag it to hold one still. A live link where one exists, and the source either way.</p>
         </header>
 
-        <ol class="projects">
-          <li class="project project-lead" data-reveal>
+        <div class="orbit" id="orbit">
+          <div class="orbit-scene" tabindex="0" aria-label="Project ring. Drag to turn it, or use the previous and next buttons.">
+            <div class="orbit-ring" id="orbit-ring">
+          <article class="orbit-card project project-lead" style="--i:0" data-title="This portfolio">
             <span class="project-num" aria-hidden="true">01</span>
             <div class="project-main">
               <div class="project-heading">
-                <h3>Our Money Hub</h3>
-                <p class="project-stack">JavaScript</p>
+                <h3>This portfolio</h3>
+                <p class="project-stack">HTML · CSS</p>
               </div>
-              <p>A private ledger for a household. Shared budgets and spending, with no accounts and no passwords.</p>
+              <p>The public folio: the work, the short path, and a way to get in touch. The same pages are also at the root site.</p>
               <ul class="project-links">
-                <li><a href="https://arnold-rg.github.io/our-money-hub/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
-                <li><a href="https://github.com/Arnold-RG/our-money-hub" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://arnold-rg.github.io/arnold-portfolio/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://arnold-rg.github.io/" target="_blank" rel="noopener noreferrer">Root site<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/arnold-portfolio" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
+          <article class="orbit-card project" style="--i:1" data-title="Hamwe Tourism">
             <span class="project-num" aria-hidden="true">02</span>
-            <div class="project-main">
-              <div class="project-heading">
-                <h3>PeakWise</h3>
-                <p class="project-stack">Python · ML</p>
-              </div>
-              <p>An AI-assisted reading of LC-MS/MS peaks into candidate structures and SMILES. Built as a lab tool.</p>
-              <ul class="project-links">
-                <li><a href="https://github.com/Arnold-RG/peakwise" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project" data-reveal>
-            <span class="project-num" aria-hidden="true">03</span>
-            <div class="project-main">
-              <div class="project-heading">
-                <h3>NFL Bot</h3>
-                <p class="project-stack">Flutter · Dart</p>
-              </div>
-              <p>An on-device health coach for food, training, hydration, and recovery. Runs on iOS, Android, and the web.</p>
-              <ul class="project-links">
-                <li><a href="https://arnold-rg.github.io/nfl-bot/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
-                <li><a href="https://github.com/Arnold-RG/nfl-bot" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project" data-reveal>
-            <span class="project-num" aria-hidden="true">04</span>
             <div class="project-main">
               <div class="project-heading">
                 <h3>Hamwe Tourism</h3>
                 <p class="project-stack">React · TypeScript</p>
               </div>
-              <p>A storefront for hosted tours in Rwanda: catalogue, booking, maps, and tickets.</p>
+              <p>A storefront for hosted tours in Rwanda: catalogue, booking, maps, and tickets. The same repository publishes the root site.</p>
               <ul class="project-links">
                 <li><a href="https://arnold-rg.github.io/hamwe/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://arnold-rg.github.io/" target="_blank" rel="noopener noreferrer">Root site<span class="sr-only"> (opens in a new tab)</span></a></li>
                 <li><a href="https://github.com/Arnold-RG/Arnold-RG.github.io" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
-            <span class="project-num" aria-hidden="true">05</span>
-            <div class="project-main">
-              <div class="project-heading">
-                <h3>Africa Shield Cyber Centre</h3>
-                <p class="project-stack">HTML · PHP</p>
-              </div>
-              <p>A threat desk: SOC view, a threat map, and incident reports.</p>
-              <ul class="project-links">
-                <li><a href="https://github.com/Arnold-RG/Africa-shield-cyber-centre" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project" data-reveal>
-            <span class="project-num" aria-hidden="true">06</span>
-            <div class="project-main">
-              <div class="project-heading">
-                <h3>STANS</h3>
-                <p class="project-stack">TypeScript</p>
-              </div>
-              <p>A traffic desk on OpenStreetMap: Nominatim search, OSRM routes, GPS, weather, and Overpass points of interest.</p>
-              <ul class="project-links">
-                <li><a href="https://arnold-rg.github.io/STANS/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
-                <li><a href="https://github.com/Arnold-RG/STANS" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="project" data-reveal>
-            <span class="project-num" aria-hidden="true">07</span>
+          <article class="orbit-card project" style="--i:2" data-title="AI and Data Scientist Roadmap">
+            <span class="project-num" aria-hidden="true">03</span>
             <div class="project-main">
               <div class="project-heading">
                 <h3>AI &amp; Data Scientist Roadmap</h3>
@@ -281,22 +229,181 @@
                 <li><a href="https://github.com/Arnold-RG/ai-data-scientist-roadmap" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
+          </article>
 
-          <li class="project" data-reveal>
-            <span class="project-num" aria-hidden="true">08</span>
+          <article class="orbit-card project" style="--i:3" data-title="Elvora">
+            <span class="project-num" aria-hidden="true">04</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Elvora</h3>
+                <p class="project-stack">Flutter · Dart</p>
+              </div>
+              <p>An on-device health coach for food, training, hydration, and recovery. The repository is NFL Bot. It runs on iOS, Android, and the web.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/nfl-bot/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/nfl-bot" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:4" data-title="STANS">
+            <span class="project-num" aria-hidden="true">05</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>STANS</h3>
+                <p class="project-stack">TypeScript</p>
+              </div>
+              <p>A traffic desk on OpenStreetMap: Nominatim search, OSRM routes, GPS, weather, and Overpass points of interest.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/STANS/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/STANS" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:5" data-title="Africa Shield Cyber Centre">
+            <span class="project-num" aria-hidden="true">06</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Africa Shield Cyber Centre</h3>
+                <p class="project-stack">JavaScript</p>
+              </div>
+              <p>A threat desk for East Africa. Published feeds, a map, and incident notes that stay in the browser.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/Africa-shield-cyber-centre/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/Africa-shield-cyber-centre" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:6" data-title="Boutique La Différence">
+            <span class="project-num" aria-hidden="true">07</span>
             <div class="project-main">
               <div class="project-heading">
                 <h3>Boutique La Différence</h3>
-                <p class="project-stack">HTML · CSS</p>
+                <p class="project-stack">HTML · JavaScript</p>
               </div>
-              <p>A shop site: catalogue, categories, and a page for the store itself.</p>
+              <p>A shop site for the supermarket in Zindiro, Kigali: catalogue, categories, and the counter.</p>
               <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/Boutique-la-difference/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
                 <li><a href="https://github.com/Arnold-RG/Boutique-la-difference" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
               </ul>
             </div>
-          </li>
-        </ol>
+          </article>
+
+          <article class="orbit-card project" style="--i:7" data-title="AbroadCost">
+            <span class="project-num" aria-hidden="true">08</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>AbroadCost</h3>
+                <p class="project-stack">JavaScript</p>
+              </div>
+              <p>A country budget planner for 195 countries: living costs, salaries, and travel. ARNOVA Group.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/AbroadCost/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/AbroadCost" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:8" data-title="2daymovie">
+            <span class="project-num" aria-hidden="true">09</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>2daymovie</h3>
+                <p class="project-stack">Python</p>
+              </div>
+              <p>Official film and series trailers, and where to watch legally. No full films are hosted.</p>
+              <ul class="project-links">
+                <li><a href="https://twodaymovie.onrender.com/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://arnold-rg.github.io/2daymovie/" target="_blank" rel="noopener noreferrer">Pages<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/2daymovie" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:9" data-title="Kingdom Life Kraków">
+            <span class="project-num" aria-hidden="true">10</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Kingdom Life Kraków</h3>
+                <p class="project-stack">HTML</p>
+              </div>
+              <p>Public site for the English-speaking church in Kraków. Sundays at noon, at Hotel Centrum.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/kingdom-life-krakow/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/kingdom-life-krakow" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:10" data-title="Peakwise">
+            <span class="project-num" aria-hidden="true">11</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Peakwise</h3>
+                <p class="project-stack">Python · ML</p>
+              </div>
+              <p>An AI-assisted reading of LC-MS/MS peaks into candidate structures and SMILES. Built as a lab tool.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/peakwise/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/peakwise" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:11" data-title="Our Money Hub">
+            <span class="project-num" aria-hidden="true">12</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Our Money Hub</h3>
+                <p class="project-stack">JavaScript</p>
+              </div>
+              <p>A household ledger. Shared income, savings, expenses, and plans. The default currency is the złoty.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/our-money-hub/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/our-money-hub" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:12" data-title="RAGI">
+            <span class="project-num" aria-hidden="true">13</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>RAGI</h3>
+                <p class="project-stack">TypeScript</p>
+              </div>
+              <p>A private secretary. The code is public, and each account's notes stay encrypted.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/ragi/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/ragi" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:13" data-title="GitHub profile">
+            <span class="project-num" aria-hidden="true">14</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>GitHub profile</h3>
+                <p class="project-stack">Markdown</p>
+              </div>
+              <p>The public profile: the short path, and the list of the work.</p>
+              <ul class="project-links">
+                <li><a href="https://github.com/Arnold-RG" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+            </div>
+          </div>
+          <div class="orbit-controls">
+            <button type="button" class="orbit-btn" id="orbit-prev">Previous</button>
+            <p class="orbit-status" id="orbit-status">01  This portfolio</p>
+            <button type="button" class="orbit-btn" id="orbit-next">Next</button>
+          </div>
+          <p class="sr-only" id="orbit-live" aria-live="polite"></p>
+        </div>
       </div>
     </section>
 
@@ -600,6 +707,7 @@
     </div>
   </footer>
 
+  <script src="./assets/stage.js" defer></script>
   <script src="./assets/main.js" defer></script>
 </body>
 </html>
