@@ -183,7 +183,6 @@
       running = false;
     } else if (!running) {
       running = true;
-      start = performance.now() - (performance.now() - start);
       requestAnimationFrame(frame);
     }
   });
