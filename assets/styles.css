@@ -941,8 +941,8 @@ html[data-theme="light"] .hero-portrait-bleed {
 }
 
 .orbit-card {
-  --orbit-depth: 0.55;
-  --orbit-scale: 0.88;
+  --orbit-depth: 0.52;
+  --orbit-scale: 0.9;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -955,13 +955,13 @@ html[data-theme="light"] .hero-portrait-bleed {
   z-index: 1;
   opacity: var(--orbit-depth);
   transform:
-    rotateY(calc(var(--i) * (360deg / var(--n)) + var(--orbit-spin, 0deg)))
+    rotateY(calc(var(--i) * (360deg / var(--n))))
     translateZ(var(--orbit-r))
     translateY(-50%)
     scale(var(--orbit-scale));
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  transition: opacity 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+  transition: opacity 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
 .orbit-card.project,
@@ -1086,6 +1086,9 @@ html[data-theme="light"] .hero-portrait-bleed {
     margin: 0;
     scroll-snap-align: center;
     transform: none !important;
+    opacity: 1;
+    --orbit-depth: 1;
+    --orbit-scale: 1;
   }
 }
 
@@ -1412,6 +1415,12 @@ html[data-theme="light"] .hero-portrait-bleed {
 
 /* Contact */
 
+.contact-section {
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%),
+    color-mix(in srgb, var(--paper) 88%, var(--paper-deep));
+}
+
 .contact-layout {
   display: grid;
   gap: 2rem;
@@ -1419,6 +1428,27 @@ html[data-theme="light"] .hero-portrait-bleed {
 
 .contact-card {
   font-style: normal;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: clamp(14px, 1.5vw, 22px);
+  background: color-mix(in srgb, var(--paper-deep) 88%, var(--ink-blue));
+  box-shadow: var(--shadow);
+}
+
+.contact-invite {
+  margin: 0 0 1.15rem;
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.contact-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin: 1.25rem 0 0.35rem;
 }
 
 .email-row {
@@ -1617,8 +1647,12 @@ html[data-theme="light"] .hero-portrait-bleed {
     animation: rise 0.4s var(--ease) both;
   }
 
-  .hero-bleed img {
-    animation: bleed-in 1.4s var(--ease) both;
+  .hero-atmosphere {
+    animation: atmosphere-in 1.5s var(--ease) both;
+  }
+
+  .hero-portrait-bleed {
+    animation: portrait-in 1.35s var(--ease) 0.12s both;
   }
 }
 
@@ -1644,28 +1678,39 @@ html[data-theme="light"] .hero-portrait-bleed {
   }
 }
 
-@keyframes bleed-in {
+@keyframes atmosphere-in {
   from {
     opacity: 0;
     transform: scale(1.06);
   }
   to {
-    opacity: 0.42;
+    opacity: 0.55;
     transform: none;
   }
 }
 
-html[data-theme="light"] .hero-bleed img {
-  animation-name: bleed-in-light;
+@keyframes portrait-in {
+  from {
+    opacity: 0;
+    transform: translateX(4%) scale(1.04);
+  }
+  to {
+    opacity: 0.92;
+    transform: none;
+  }
 }
 
-@keyframes bleed-in-light {
+html[data-theme="light"] .hero-atmosphere {
+  animation-name: atmosphere-in-light;
+}
+
+@keyframes atmosphere-in-light {
   from {
     opacity: 0;
     transform: scale(1.06);
   }
   to {
-    opacity: 0.28;
+    opacity: 0.35;
     transform: none;
   }
 }

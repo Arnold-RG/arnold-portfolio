@@ -338,6 +338,19 @@
       cards.forEach(function (card, n) {
         var face = !spinning() || n === index;
         card.classList.toggle("is-front", spinning() && n === index);
+        if (spinning()) {
+          var dist = Math.abs(wrap(n * step + angle));
+          var t = Math.max(0, 1 - dist / 180);
+          var depth = 0.38 + t * 0.62;
+          var scale = 0.86 + t * 0.18;
+          card.style.setProperty("--orbit-depth", depth.toFixed(3));
+          card.style.setProperty("--orbit-scale", scale.toFixed(3));
+          card.style.zIndex = String(Math.round(t * 20));
+        } else {
+          card.style.removeProperty("--orbit-depth");
+          card.style.removeProperty("--orbit-scale");
+          card.style.zIndex = "";
+        }
         card.querySelectorAll("a, button").forEach(function (control) {
           if (face) control.removeAttribute("tabindex");
           else control.setAttribute("tabindex", "-1");
@@ -368,8 +381,8 @@
         return;
       }
       var idle = !dragging && !hovering && !focused && inView && document.visibilityState !== "hidden";
-      if (idle) target -= 0.28;
-      angle += (target - angle) * 0.18;
+      if (idle) target -= 0.22;
+      angle += (target - angle) * 0.16;
       apply();
       raf = requestAnimationFrame(frame);
     }
