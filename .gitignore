@@ -137,3 +137,11 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Secrets / credentials
+*.pem
+*.key
+*credentials*
+*.p12
+secrets/
+

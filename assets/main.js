@@ -27,7 +27,7 @@
       } catch (e) {}
     }
     if (themeMeta) {
-      themeMeta.setAttribute("content", theme === "dark" ? "#101820" : "#f7f3ec");
+      themeMeta.setAttribute("content", theme === "dark" ? "#080c12" : "#edf1f7");
     }
     if (themeToggle) {
       var dark = theme === "dark";
@@ -169,7 +169,68 @@
     if (motion.matches) showAll();
   });
 
-  var sectionIds = ["work", "experience", "skills", "certificates", "about", "contact"];
+  /* Letter stagger + brief scramble on the hero name (textContent only) */
+  var scrambleRoot = document.querySelector("[data-scramble]");
+  if (scrambleRoot && !motion.matches) {
+    var glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var nodes = [];
+    Array.prototype.forEach.call(scrambleRoot.childNodes, function (node) {
+      if (node.nodeType !== 1) return;
+      var text = node.textContent || "";
+      node.textContent = "";
+      for (var i = 0; i < text.length; i++) {
+        var ch = text.charAt(i);
+        var span = document.createElement("span");
+        span.className = ch === " " ? "char char-space" : "char";
+        span.setAttribute("aria-hidden", "true");
+        span.textContent = ch === " " ? "\u00a0" : ch;
+        span.style.animationDelay = (nodes.length * 0.028) + "s";
+        node.appendChild(span);
+        if (ch !== " ") nodes.push({ el: span, final: ch });
+      }
+    });
+    scrambleRoot.setAttribute("aria-label", scrambleRoot.textContent.replace(/\s+/g, " ").trim());
+    var frame = 0;
+    var maxFrames = 18;
+    function tick() {
+      frame += 1;
+      nodes.forEach(function (item, index) {
+        var revealAt = 6 + Math.floor(index * 0.55);
+        if (frame < revealAt) {
+          item.el.textContent = glyphs.charAt(Math.floor(Math.random() * glyphs.length));
+        } else {
+          item.el.textContent = item.final;
+        }
+      });
+      if (frame < maxFrames + nodes.length) {
+        requestAnimationFrame(tick);
+      } else {
+        scrambleRoot.classList.add("is-ready");
+      }
+    }
+    requestAnimationFrame(tick);
+  } else if (scrambleRoot) {
+    scrambleRoot.classList.add("is-ready");
+  }
+
+  /* Magnetic CTAs */
+  var magnets = Array.prototype.slice.call(document.querySelectorAll(".magnetic"));
+  if (magnets.length && !motion.matches && window.matchMedia("(pointer: fine)").matches) {
+    magnets.forEach(function (btn) {
+      var strength = 18;
+      btn.addEventListener("pointermove", function (event) {
+        var rect = btn.getBoundingClientRect();
+        var x = event.clientX - rect.left - rect.width / 2;
+        var y = event.clientY - rect.top - rect.height / 2;
+        btn.style.transform = "translate(" + (x / strength) + "px, " + (y / strength) + "px)";
+      });
+      btn.addEventListener("pointerleave", function () {
+        btn.style.transform = "";
+      });
+    });
+  }
+
+  var sectionIds = ["work", "skills", "experience", "certificates", "about", "contact"];
   var sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
   var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-section]"));
 

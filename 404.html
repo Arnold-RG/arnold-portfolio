@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Page not found — Arnold Rurangwa</title>
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f7f3ec">
+  <meta name="theme-color" content="#080c12">
   <style>
-    :root { color-scheme: light; }
+    :root { color-scheme: dark; }
     * { box-sizing: border-box; }
     html, body { margin: 0; min-height: 100%; }
     body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f7f3ec;
-      color: #172033;
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      background: #080c12;
+      color: #b8c4d9;
       line-height: 1.6;
     }
     body::before {
@@ -23,7 +24,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: #b08948;
+      background: linear-gradient(90deg, #b8ff2e, #2ee6d6);
     }
     main {
       width: min(40rem, calc(100% - 3rem));
@@ -31,39 +32,33 @@
     }
     p.kicker {
       margin: 0 0 1rem;
-      font-family: Palatino, "Palatino Linotype", Georgia, serif;
-      font-style: italic;
-      color: #6f5424;
-      font-size: 1.25rem;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #b8ff2e;
     }
     h1 {
       margin: 0;
-      font-family: Palatino, "Palatino Linotype", Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
       letter-spacing: -0.03em;
-      line-height: 0.95;
+      line-height: 1.1;
+      color: #eef4ff;
     }
-    p.note { margin: 1.25rem 0 0; max-width: 34rem; color: #243044; font-size: 1.125rem; }
+    p { margin: 1.25rem 0 0; max-width: 32rem; }
     a {
-      color: #6f5424;
-      text-underline-offset: 0.2em;
+      color: #2ee6d6;
+      font-weight: 600;
     }
-    a:focus-visible { outline: 2px solid #6f5424; outline-offset: 3px; }
+    a:hover { color: #b8ff2e; }
   </style>
 </head>
 <body>
   <main>
     <p class="kicker">404</p>
-    <h1>This page is not on the site.</h1>
-    <p class="note">The address does not match anything here. <a id="home" href="./">Back to the portfolio</a>.</p>
+    <h1>This page is not here.</h1>
+    <p>Return to <a href="./">Arnold Rurangwa’s portfolio</a>.</p>
   </main>
-  <script>
-    (function () {
-      var onProject = location.pathname === "/arnold-portfolio" || location.pathname.indexOf("/arnold-portfolio/") === 0;
-      var home = document.getElementById("home");
-      if (home) home.setAttribute("href", onProject ? "/arnold-portfolio/" : "./");
-    })();
-  </script>
 </body>
 </html>

@@ -4,28 +4,21 @@ Personal site for Arnold Rurangwa, computer engineer in Kraków.
 
 **Live:** [https://arnold-rg.github.io/arnold-portfolio/](https://arnold-rg.github.io/arnold-portfolio/)
 
-The repository homepage also points at [https://arnold-rg.github.io/](https://arnold-rg.github.io/). This project publishes the portfolio at the address above.
+Editorial-tech portfolio: charcoal / ink blue / electric lime, brand-first hero, selected work on a project ring, skills, experience, and contact.
 
 ## Preview locally
 
 From the repository root:
 
 ```bash
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 
 Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
 ## Publish
 
-GitHub Pages currently builds this site from the `main` branch, which is what serves the live URL.
-
-`.github/workflows/pages.yml` can publish the same files through GitHub Actions. After that workflow is on `main`, switch the source:
-
-1. Open **Settings → Pages → Build and deployment**.
-2. Set **Source** to **GitHub Actions**.
-
-Until that setting is changed, publishing from the `main` branch keeps the site up to date. The Actions deploy step will fail while Pages is still set to deploy from a branch.
+GitHub Pages builds from `main`. `.github/workflows/pages.yml` can publish through GitHub Actions — set **Settings → Pages → Source** to **GitHub Actions** when ready.
 
 ## In this repository
 
@@ -33,8 +26,7 @@ Until that setting is changed, publishing from the `main` branch keeps the site 
 | --- | --- |
 | `index.html` | The site |
 | `assets/` | Styles, scripts, fonts, portrait, logo, resume |
-
-The opening view is a brass armillary that keeps turning, and the fourteen public projects sit on a ring. Both fall back to a still layout when motion is reduced.
+| `SECURITY.md` | Vulnerability disclosure |
 | `Folio/` | Earlier version, kept for reference |
 
 ## Contact

@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'">
   <title>Arnold Rurangwa — Computer Engineer</title>
   <meta name="description" content="Computer engineer in Kraków. Software, cybersecurity, networks, and applied machine learning. Selected work, experience, and contact.">
   <meta name="author" content="Arnold Rurangwa">
-  <meta name="theme-color" content="#f7f3ec">
+  <meta name="theme-color" content="#080c12">
+  <meta name="color-scheme" content="dark light">
   <link rel="canonical" href="https://arnold-rg.github.io/arnold-portfolio/">
   <link rel="icon" href="./assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="./assets/logo.png">
@@ -18,7 +21,7 @@
   <meta property="og:image" content="https://arnold-rg.github.io/arnold-portfolio/assets/portrait.png">
   <meta property="og:image:alt" content="Portrait of Arnold Rurangwa">
   <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Arnold Rurangwa — Computer Engineer">
   <meta name="twitter:description" content="Computer engineer in Kraków. Software, cybersecurity, networks, and applied machine learning.">
   <meta name="twitter:image" content="https://arnold-rg.github.io/arnold-portfolio/assets/portrait.png">
@@ -33,12 +36,12 @@
         var stored = localStorage.getItem("theme");
         var theme = stored === "dark" || stored === "light"
           ? stored
-          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
         document.documentElement.setAttribute("data-theme", theme);
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", theme === "dark" ? "#101820" : "#f7f3ec");
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#080c12" : "#edf1f7");
       } catch (e) {
-        document.documentElement.setAttribute("data-theme", "light");
+        document.documentElement.setAttribute("data-theme", "dark");
       }
     })();
   </script>
@@ -90,10 +93,8 @@
       <nav class="nav" aria-label="Primary">
         <ul class="nav-links" id="nav-links">
           <li><a href="#work" data-section="work">Work</a></li>
-          <li><a href="#experience" data-section="experience">Experience</a></li>
           <li><a href="#skills" data-section="skills">Skills</a></li>
-          <li><a href="#certificates" data-section="certificates">Certificates</a></li>
-          <li><a href="#about" data-section="about">About</a></li>
+          <li><a href="#experience" data-section="experience">Experience</a></li>
           <li><a href="#contact" data-section="contact">Contact</a></li>
         </ul>
         <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
@@ -116,11 +117,11 @@
       <nav aria-label="Mobile">
         <ul class="drawer-links">
           <li><a href="#work" data-section="work">Work</a></li>
-          <li><a href="#experience" data-section="experience">Experience</a></li>
           <li><a href="#skills" data-section="skills">Skills</a></li>
+          <li><a href="#experience" data-section="experience">Experience</a></li>
+          <li><a href="#contact" data-section="contact">Contact</a></li>
           <li><a href="#certificates" data-section="certificates">Certificates</a></li>
           <li><a href="#about" data-section="about">About</a></li>
-          <li><a href="#contact" data-section="contact">Contact</a></li>
         </ul>
         <a class="btn btn-primary drawer-resume" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
       </nav>
@@ -129,16 +130,18 @@
 
   <main id="content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-atmosphere" aria-hidden="true"></div>
-      <div class="armillary" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-      <div class="wrap hero-grid">
+      <div class="hero-bleed" aria-hidden="true">
+        <img src="./assets/portrait.png" width="313" height="331" alt="" fetchpriority="high" decoding="async">
+        <div class="hero-veil"></div>
+      </div>
+      <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">
             <span>Computer engineer</span>
             <span class="eyebrow-dot" aria-hidden="true">·</span>
             <span>Kraków, Poland</span>
           </p>
-          <h1 class="hero-title" id="hero-title">
+          <h1 class="hero-title" id="hero-title" data-scramble>
             <span class="name-given">Arnold</span>
             <span class="name-family">Rurangwa</span>
           </h1>
@@ -146,37 +149,31 @@
             I build software that has to hold up. Household ledgers, lab tools, shopfronts, maps, and a security desk. Trained in cybersecurity and computer networks.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#work">See the work</a>
-            <a class="text-link" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
+            <a class="btn btn-primary magnetic" href="#work">See the work</a>
+            <a class="btn btn-ghost magnetic" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
           </div>
+          <dl class="facts">
+            <div>
+              <dt>Based</dt>
+              <dd>Kraków, Poland</dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:+48575217930">+48 575 217 930</a></dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>Computer engineering</dd>
+            </div>
+          </dl>
         </div>
-
-        <figure class="portrait">
-          <img src="./assets/portrait.png" width="313" height="331" alt="Portrait of Arnold Rurangwa" fetchpriority="high" decoding="async">
-          <figcaption>Kraków</figcaption>
-        </figure>
-
-        <dl class="facts">
-          <div>
-            <dt>Based</dt>
-            <dd>Kraków, Poland</dd>
-          </div>
-          <div>
-            <dt>Phone</dt>
-            <dd><a href="tel:+48575217930">+48 575 217 930</a></dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>Computer engineering</dd>
-          </div>
-        </dl>
       </div>
     </section>
 
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="wrap">
         <header class="chapter">
-          <p class="chapter-kicker" aria-hidden="true"><span>01</span></p>
+          <p class="chapter-kicker" aria-hidden="true"><span>Work · 01</span></p>
           <h2 id="work-title">Selected work</h2>
           <p class="lede">Fourteen public projects, on a ring that keeps turning. Drag it to hold one still. A live link where one exists, and the source either way.</p>
         </header>
@@ -407,10 +404,75 @@
       </div>
     </section>
 
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <header class="chapter">
+          <p class="chapter-kicker" aria-hidden="true"><span>Skills · 02</span></p>
+          <h2 id="skills-title">Toolkit</h2>
+          <p class="lede">What I use on the work, grouped the way I reach for it.</p>
+        </header>
+
+        <div class="skill-groups">
+          <section class="skill-group" data-reveal>
+            <h3>AI and machine learning</h3>
+            <ul>
+              <li>Applied AI products</li>
+              <li>LangGraph · agent workflows</li>
+              <li>On-device / edge AI</li>
+              <li>Scientific ML tooling</li>
+              <li>FastAPI model services</li>
+              <li>AI governance &amp; policy</li>
+              <li>Prompted systems</li>
+              <li>Python for ML</li>
+            </ul>
+          </section>
+          <section class="skill-group" data-reveal>
+            <h3>Automation</h3>
+            <ul>
+              <li>Scripting &amp; automation</li>
+              <li>Python · Bash</li>
+              <li>CI/CD pipelines</li>
+              <li>GitHub Actions</li>
+              <li>REST API integration</li>
+              <li>Workflow design</li>
+              <li>Terraform (IaC)</li>
+              <li>Docker</li>
+            </ul>
+          </section>
+          <section class="skill-group" data-reveal>
+            <h3>Data engineering</h3>
+            <ul>
+              <li>Data validation &amp; quality</li>
+              <li>SQL · MySQL</li>
+              <li>ETL-style processing</li>
+              <li>Structured / semi-structured data</li>
+              <li>JSON · APIs</li>
+              <li>Inventory &amp; record systems</li>
+              <li>Exception handling</li>
+              <li>Documentation</li>
+            </ul>
+          </section>
+          <section class="skill-group" data-reveal>
+            <h3>Software and platforms</h3>
+            <ul>
+              <li>JavaScript · TypeScript</li>
+              <li>React</li>
+              <li>Flutter · Dart</li>
+              <li>HTML5 · CSS3</li>
+              <li>Microsoft Azure</li>
+              <li>Linux</li>
+              <li>Git · GitHub</li>
+              <li>Networking foundations</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="wrap">
         <header class="chapter">
-          <p class="chapter-kicker" aria-hidden="true"><span>02</span></p>
+          <p class="chapter-kicker" aria-hidden="true"><span>Experience · 03</span></p>
           <h2 id="experience-title">Experience</h2>
           <p class="lede">Most recent first. The Escola internship overlapped the logistics job and the degree.</p>
         </header>
@@ -480,75 +542,10 @@
       </div>
     </section>
 
-    <section class="section" id="skills" aria-labelledby="skills-title">
-      <div class="wrap">
-        <header class="chapter">
-          <p class="chapter-kicker" aria-hidden="true"><span>03</span></p>
-          <h2 id="skills-title">Toolkit</h2>
-          <p class="lede">What I use on the work, grouped the way I reach for it.</p>
-        </header>
-
-        <div class="skill-groups">
-          <section class="skill-group" data-reveal>
-            <h3>AI and machine learning</h3>
-            <ul>
-              <li>Applied AI products</li>
-              <li>LangGraph · agent workflows</li>
-              <li>On-device / edge AI</li>
-              <li>Scientific ML tooling</li>
-              <li>FastAPI model services</li>
-              <li>AI governance &amp; policy</li>
-              <li>Prompted systems</li>
-              <li>Python for ML</li>
-            </ul>
-          </section>
-          <section class="skill-group" data-reveal>
-            <h3>Automation</h3>
-            <ul>
-              <li>Scripting &amp; automation</li>
-              <li>Python · Bash</li>
-              <li>CI/CD pipelines</li>
-              <li>GitHub Actions</li>
-              <li>REST API integration</li>
-              <li>Workflow design</li>
-              <li>Terraform (IaC)</li>
-              <li>Docker</li>
-            </ul>
-          </section>
-          <section class="skill-group" data-reveal>
-            <h3>Data engineering</h3>
-            <ul>
-              <li>Data validation &amp; quality</li>
-              <li>SQL · MySQL</li>
-              <li>ETL-style processing</li>
-              <li>Structured / semi-structured data</li>
-              <li>JSON · APIs</li>
-              <li>Inventory &amp; record systems</li>
-              <li>Exception handling</li>
-              <li>Documentation</li>
-            </ul>
-          </section>
-          <section class="skill-group" data-reveal>
-            <h3>Software and platforms</h3>
-            <ul>
-              <li>JavaScript · TypeScript</li>
-              <li>React</li>
-              <li>Flutter · Dart</li>
-              <li>HTML5 · CSS3</li>
-              <li>Microsoft Azure</li>
-              <li>Linux</li>
-              <li>Git · GitHub</li>
-              <li>Networking foundations</li>
-            </ul>
-          </section>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="certificates" aria-labelledby="certificates-title">
       <div class="wrap">
         <header class="chapter">
-          <p class="chapter-kicker" aria-hidden="true"><span>04</span></p>
+          <p class="chapter-kicker" aria-hidden="true"><span>Certificates</span></p>
           <h2 id="certificates-title">Certificates</h2>
           <p class="lede">Finished credentials. The issuer is named when I have it.</p>
         </header>
@@ -602,7 +599,7 @@
       <div class="wrap about-layout">
         <div class="about-main">
           <header class="chapter">
-            <p class="chapter-kicker" aria-hidden="true"><span>05</span></p>
+            <p class="chapter-kicker" aria-hidden="true"><span>About</span></p>
             <h2 id="about-title">About</h2>
           </header>
           <div class="about-copy">
@@ -659,7 +656,7 @@
     <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact-layout">
         <header class="chapter">
-          <p class="chapter-kicker" aria-hidden="true"><span>06</span></p>
+          <p class="chapter-kicker" aria-hidden="true"><span>Contact · 04</span></p>
           <h2 id="contact-title">Contact</h2>
           <p class="lede">For a role, a collaboration, or a technical question, the phone and the email both reach me.</p>
         </header>

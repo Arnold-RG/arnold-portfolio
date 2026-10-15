@@ -28,9 +28,10 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp index.html 404.html robots.txt sitemap.xml _site/
+          cp index.html 404.html robots.txt sitemap.xml SECURITY.md LICENSE README.md _site/
           cp -R assets Folio _site/
           touch _site/.nojekyll
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
