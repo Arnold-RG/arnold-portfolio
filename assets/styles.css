@@ -61,25 +61,27 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Editorial-tech: charcoal / ink blue / electric lime */
+/* Midnight #0A0E17 + ice #E8F1FF + coral #FF6B4A */
 
 :root,
 html[data-theme="dark"] {
-  --paper: #080c12;
-  --paper-deep: #0d1420;
-  --ink: #eef4ff;
-  --body: #b8c4d9;
-  --muted: #7a8aa3;
-  --line: rgba(180, 210, 255, 0.12);
-  --accent: #b8ff2e;
-  --accent-2: #2ee6d6;
-  --accent-ink: #0a1200;
-  --accent-wash: rgba(184, 255, 46, 0.08);
-  --ink-blue: #1a2f52;
-  --ink-blue-2: #243d6b;
-  --mount: #0a1018;
-  --header: rgba(8, 12, 18, 0.88);
-  --shadow: 0 28px 60px -28px rgba(0, 0, 0, 0.7);
+  --paper: #0a0e17;
+  --paper-deep: #101826;
+  --ink: #e8f1ff;
+  --body: #b8c8de;
+  --muted: #7f91ab;
+  --line: rgba(232, 241, 255, 0.12);
+  --accent: #ff6b4a;
+  --accent-2: #e8f1ff;
+  --accent-ink: #0a0e17;
+  --accent-wash: rgba(255, 107, 74, 0.12);
+  --ink-blue: #152033;
+  --ink-blue-2: #1c2b44;
+  --mount: #0a0e17;
+  --ice: #e8f1ff;
+  --coral: #ff6b4a;
+  --header: rgba(10, 14, 23, 0.9);
+  --shadow: 0 28px 60px -28px rgba(0, 0, 0, 0.72);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --display: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
   --sans: "Source Sans 3", "Segoe UI", sans-serif;
@@ -90,21 +92,23 @@ html[data-theme="dark"] {
 }
 
 html[data-theme="light"] {
-  --paper: #edf1f7;
-  --paper-deep: #e2e8f2;
-  --ink: #0a1220;
-  --body: #2a3648;
-  --muted: #5a6a80;
-  --line: rgba(10, 18, 32, 0.12);
-  --accent: #5a9a00;
-  --accent-2: #0d9a8c;
-  --accent-ink: #f4ffe8;
-  --accent-wash: rgba(90, 154, 0, 0.1);
-  --ink-blue: #d6e2f5;
-  --ink-blue-2: #c5d4ec;
-  --mount: #121a28;
-  --header: rgba(237, 241, 247, 0.9);
-  --shadow: 0 28px 50px -30px rgba(10, 18, 32, 0.35);
+  --paper: #e8f1ff;
+  --paper-deep: #d7e4f7;
+  --ink: #0a0e17;
+  --body: #243247;
+  --muted: #5a6d86;
+  --line: rgba(10, 14, 23, 0.12);
+  --accent: #e25538;
+  --accent-2: #0a0e17;
+  --accent-ink: #e8f1ff;
+  --accent-wash: rgba(255, 107, 74, 0.14);
+  --ink-blue: #cddcf2;
+  --ink-blue-2: #bccfe8;
+  --mount: #152033;
+  --ice: #e8f1ff;
+  --coral: #ff6b4a;
+  --header: rgba(232, 241, 255, 0.92);
+  --shadow: 0 28px 50px -30px rgba(10, 14, 23, 0.28);
   color-scheme: light;
 }
 
@@ -148,9 +152,9 @@ body {
   color: var(--body);
   background-color: transparent;
   background-image:
-    radial-gradient(ellipse 70% 50% at 85% 0%, rgba(46, 230, 214, 0.07), transparent 50%),
-    radial-gradient(ellipse 55% 40% at 0% 20%, rgba(26, 47, 82, 0.55), transparent 55%),
-    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(184, 255, 46, 0.04), transparent 50%);
+    radial-gradient(ellipse 70% 50% at 85% 0%, rgba(255, 107, 74, 0.12), transparent 50%),
+    radial-gradient(ellipse 55% 40% at 0% 20%, rgba(232, 241, 255, 0.08), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(255, 107, 74, 0.06), transparent 50%);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -158,8 +162,8 @@ body {
 
 html[data-theme="light"] body {
   background-image:
-    radial-gradient(ellipse 70% 45% at 90% -5%, rgba(46, 230, 214, 0.12), transparent 48%),
-    radial-gradient(ellipse 50% 40% at 0% 10%, rgba(26, 47, 82, 0.08), transparent 50%);
+    radial-gradient(ellipse 70% 45% at 90% -5%, rgba(255, 107, 74, 0.14), transparent 48%),
+    radial-gradient(ellipse 50% 40% at 0% 10%, rgba(10, 14, 23, 0.06), transparent 50%);
 }
 
 html.menu-open,
@@ -919,9 +923,28 @@ html[data-theme="light"] .hero-portrait-bleed {
   width: calc(var(--orbit-r) * 2);
   height: calc(var(--orbit-r) * 0.36);
   transform: translate(-50%, -50%);
-  border: 1px solid color-mix(in srgb, var(--accent-2) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--coral) 45%, transparent);
   border-radius: 50%;
   pointer-events: none;
+  box-shadow: 0 0 40px color-mix(in srgb, var(--coral) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orbit-scene::after {
+    animation: orbit-halo 5.5s ease-in-out infinite;
+  }
+}
+
+@keyframes orbit-halo {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
 }
 
 .orbit-scene:active {
@@ -1197,7 +1220,7 @@ html[data-theme="light"] .hero-portrait-bleed {
   width: 2rem;
   height: 2px;
   margin-top: 0.75rem;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--coral), var(--ice));
 }
 
 .skill-group ul {
@@ -1210,6 +1233,28 @@ html[data-theme="light"] .hero-portrait-bleed {
   padding: 0.55rem 0;
   border-bottom: 1px solid var(--line);
   color: var(--body);
+  animation: skill-rise 0.55s var(--ease) both;
+}
+
+.skill-group:nth-child(1) li:nth-child(1) { animation-delay: 0.04s; }
+.skill-group:nth-child(1) li:nth-child(2) { animation-delay: 0.08s; }
+.skill-group:nth-child(1) li:nth-child(3) { animation-delay: 0.12s; }
+.skill-group:nth-child(2) li:nth-child(1) { animation-delay: 0.1s; }
+.skill-group:nth-child(2) li:nth-child(2) { animation-delay: 0.14s; }
+.skill-group:nth-child(2) li:nth-child(3) { animation-delay: 0.18s; }
+.skill-group:nth-child(3) li:nth-child(1) { animation-delay: 0.16s; }
+.skill-group:nth-child(3) li:nth-child(2) { animation-delay: 0.2s; }
+.skill-group:nth-child(3) li:nth-child(3) { animation-delay: 0.24s; }
+
+@keyframes skill-rise {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (min-width: 700px) {
