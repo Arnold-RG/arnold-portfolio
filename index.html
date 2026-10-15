@@ -45,6 +45,7 @@
       }
     })();
   </script>
+  <link rel="stylesheet" href="./assets/arnova/arnova-base.css">
   <link rel="stylesheet" href="./assets/styles.css">
   <script type="application/ld+json">
   {
@@ -77,7 +78,7 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
+  <a class="arn-skip skip-link" href="#content">Skip to content</a>
   <canvas id="stage" aria-hidden="true"></canvas>
 
   <header class="site-header">
@@ -129,44 +130,55 @@
   </header>
 
   <main id="content">
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero arn-hero" aria-labelledby="hero-title">
       <div class="hero-bleed" aria-hidden="true">
-        <img src="./assets/portrait.png" width="313" height="331" alt="" fetchpriority="high" decoding="async">
+        <img class="hero-atmosphere" src="./assets/hero-atmosphere.png" width="1600" height="1000" alt="" decoding="async">
+        <img class="hero-portrait-bleed" src="./assets/portrait.png" width="313" height="331" alt="" fetchpriority="high" decoding="async">
         <div class="hero-veil"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
       </div>
       <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">
-            <span>Computer engineer</span>
+        <div class="hero-copy arn-stagger">
+          <p class="arn-brand eyebrow arn-reveal">
+            <span>Arnold Rurangwa</span>
             <span class="eyebrow-dot" aria-hidden="true">·</span>
-            <span>Kraków, Poland</span>
+            <span>Computer engineer · Kraków</span>
           </p>
-          <h1 class="hero-title" id="hero-title" data-scramble>
+          <h1 class="hero-title arn-h1 arn-reveal" id="hero-title" data-scramble>
             <span class="name-given">Arnold</span>
             <span class="name-family">Rurangwa</span>
           </h1>
-          <p class="hero-lede">
+          <p class="hero-lede arn-lead arn-reveal">
             I build software that has to hold up. Household ledgers, lab tools, shopfronts, maps, and a security desk. Trained in cybersecurity and computer networks.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary magnetic" href="#work">See the work</a>
-            <a class="btn btn-ghost magnetic" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
+          <div class="hero-actions arn-cta arn-reveal">
+            <a class="btn btn-primary magnetic arn-btn arn-btn-primary" href="#work">See the work</a>
+            <a class="btn btn-ghost magnetic arn-btn arn-btn-ghost" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
           </div>
-          <dl class="facts">
-            <div>
-              <dt>Based</dt>
-              <dd>Kraków, Poland</dd>
-            </div>
-            <div>
-              <dt>Phone</dt>
-              <dd><a href="tel:+48575217930">+48 575 217 930</a></dd>
-            </div>
-            <div>
-              <dt>Focus</dt>
-              <dd>Computer engineering</dd>
-            </div>
-          </dl>
         </div>
+      </div>
+    </section>
+
+    <section class="facts-band" aria-label="Quick facts">
+      <div class="wrap">
+        <dl class="facts">
+          <div>
+            <dt>Based</dt>
+            <dd>Kraków, Poland</dd>
+          </div>
+          <div>
+            <dt>Role</dt>
+            <dd>Data Operator · Cognizant</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="tel:+48575217930">+48 575 217 930</a></dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Computer engineering</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
@@ -653,17 +665,22 @@
       </div>
     </section>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact-layout">
         <header class="chapter">
           <p class="chapter-kicker" aria-hidden="true"><span>Contact · 04</span></p>
-          <h2 id="contact-title">Contact</h2>
-          <p class="lede">For a role, a collaboration, or a technical question, the phone and the email both reach me.</p>
+          <h2 id="contact-title">Let’s talk</h2>
+          <p class="lede">For a role, a collaboration, or a technical question — email and phone both reach me in Kraków.</p>
         </header>
-        <address class="contact-card">
+        <address class="contact-card arn-reveal">
+          <p class="contact-invite">Open for engineering roles, applied AI, and systems work.</p>
           <div class="email-row">
             <a class="email-link" id="email-link" href="mailto:rurangwaarnold32@gmail.com">rurangwaarnold32@gmail.com</a>
             <button type="button" class="copy-btn" id="copy-email">Copy address</button>
+          </div>
+          <div class="contact-cta">
+            <a class="btn btn-primary magnetic" href="mailto:rurangwaarnold32@gmail.com">Email Arnold</a>
+            <a class="btn btn-ghost magnetic" href="tel:+48575217930">Call +48 575 217 930</a>
           </div>
           <ul class="contact-list">
             <li>
@@ -704,6 +721,7 @@
     </div>
   </footer>
 
+  <script src="./assets/arnova/arnova-secure.js" defer></script>
   <script src="./assets/stage.js" defer></script>
   <script src="./assets/main.js" defer></script>
 </body>
