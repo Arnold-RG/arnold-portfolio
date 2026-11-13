@@ -897,7 +897,7 @@ html[data-theme="light"] .hero-portrait-bleed {
 }
 
 .orbit {
-  --n: 14;
+  --n: 15;
   --orbit-r: clamp(20rem, 36vw, 34rem);
   --card-w: min(16.75rem, 72vw);
   position: relative;

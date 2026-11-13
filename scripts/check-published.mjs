@@ -227,10 +227,10 @@ const publicAlias = new RegExp(
   ].join("|"),
   "i",
 );
-// Company identifiers on a personal portfolio, built from pieces so this
-// file does not contain the literals. A leading word boundary on the short
-// name avoids matching place names that only contain it as a suffix.
-const companyShort = new RegExp("\\b" + ["vi", "ra"].join(""), "i");
+// Older company identifiers, built from pieces so this file does not
+// contain the literals. The public studio name (the short form) is allowed
+// on this official portfolio, where it is a featured public project. The
+// alternate form stays blocked.
 const companyAlt = new RegExp(["an", "vi", "ra"].join(""), "i");
 
 const hasName = (text) =>
@@ -239,7 +239,6 @@ const hasName = (text) =>
       privateName.test(t) ||
       privateAlias.test(t) ||
       publicAlias.test(t) ||
-      companyShort.test(t) ||
       companyAlt.test(t),
   );
 
