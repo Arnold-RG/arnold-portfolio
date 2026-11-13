@@ -95,8 +95,21 @@ function fileText(path) {
 const privateName = new RegExp(["Ar", "nova"].join(""), "i");
 const privateAlias = new RegExp(["at", "eck"].join(""), "i");
 const publicAlias = new RegExp(["King", "Whisper"].join("\\s+"), "i");
+// Company identifiers on a personal portfolio, built from pieces so this
+// file does not contain the literals. A leading word boundary on the short
+// name avoids matching place names that only contain it as a suffix.
+const companyShort = new RegExp("\\b" + ["vi", "ra"].join(""), "i");
+const companyAlt = new RegExp(["an", "vi", "ra"].join(""), "i");
+
 const hasName = (text) =>
-  textVariants(text).some((t) => privateName.test(t) || privateAlias.test(t) || publicAlias.test(t));
+  textVariants(text).some(
+    (t) =>
+      privateName.test(t) ||
+      privateAlias.test(t) ||
+      publicAlias.test(t) ||
+      companyShort.test(t) ||
+      companyAlt.test(t),
+  );
 
 // Local file paths. Personal dirs and file:// URLs are caught anywhere.
 // [\\/]+ accepts escaped C:\\Users forms. System dirs are flagged only
