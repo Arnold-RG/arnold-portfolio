@@ -109,7 +109,7 @@
     boot();
   }
 
-  global.ViraSecure = {
+  global.SiteSecure = {
     escapeHtml: escapeHtml,
     text: text,
     hardenExternalLinks: hardenExternalLinks,

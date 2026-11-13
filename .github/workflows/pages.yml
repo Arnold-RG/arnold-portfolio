@@ -32,6 +32,16 @@ jobs:
           cp -R assets Folio _site/
           touch _site/.nojekyll
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check served files for private data
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils qpdf
+          node scripts/check-published.mjs _site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
