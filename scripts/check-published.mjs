@@ -1,7 +1,7 @@
 // Served-file privacy check for the arnold-portfolio Pages site.
 // Run from the repo root: node scripts/check-published.mjs [dir]
 // (dir defaults to the repo root; CI passes the assembled _site). Needs
-// pdftotext from poppler-utils. Exits 1 if any served file contains the
+// pdftotext from poppler-utils and qpdf --qdf. Exits 1 if any served file contains the
 // personal phone number, a private name, or a local file path.
 import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
@@ -9,7 +9,7 @@ import { extname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 // Default-deny: every file is scanned as text unless it is a known binary.
-// PDFs are read through pdftotext.
+// PDFs are read through pdftotext and decompressed with qpdf --qdf.
 const BINARY = new Set([
   ".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif", ".ico", ".bmp", ".tif", ".tiff",
   ".woff", ".woff2", ".ttf", ".otf", ".eot",
@@ -25,6 +25,11 @@ const DIR_SKIP = new Set([".git"]);
 
 const personalPhone = /(\+?48)?[\s().\/-]*575[\s().\/-]*217[\s().\/-]*930/;
 const personalTel = /tel:\+?48/i;
+// Any tel: URI (not only those already written as tel:+48). A leading
+// letter is excluded so words like "hotel:" are not flagged.
+const anyTel = /(?<![A-Za-z])tel:/i;
+// Phone-like +48 numbers (country code plus at least two digits).
+const plus48Phone = /\+48[\s().\/-]*\d{2,}/;
 const NAMED_ENTITIES = {
   amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: "\u00a0", plus: "+", colon: ":",
   sol: "/", lpar: "(", rpar: ")", period: ".", hyphen: "-", dash: "-", ndash: "\u2013", mdash: "\u2014",
@@ -81,12 +86,38 @@ function textVariants(text) {
 }
 
 function hasPhone(text) {
-  return textVariants(text).some((t) => personalPhone.test(t) || personalTel.test(t));
+  return textVariants(text).some(
+    (t) =>
+      personalPhone.test(t) ||
+      personalTel.test(t) ||
+      anyTel.test(t) ||
+      plus48Phone.test(t),
+  );
+}
+
+// PDFs: visible text via pdftotext, plus decompressed objects via
+// qpdf --qdf (annotations, /URI values, and stream text). Missing
+// tools fail closed (ENOENT).
+function pdfScanText(path) {
+  const visible = execFileSync("pdftotext", [path, "-"], { encoding: "utf8" });
+  const qdf = execFileSync(
+    "qpdf",
+    ["--qdf", "--object-streams=disable", path, "-"],
+    { encoding: "latin1", maxBuffer: 64 * 1024 * 1024 },
+  );
+  const uris = [];
+  const uriRe = /\/URI\s*\(((?:\\.|[^\\)])*)\)/g;
+  let m;
+  while ((m = uriRe.exec(qdf))) uris.push(m[1].replace(/\\([()\\])/g, "$1"));
+  const streams = [];
+  const streamRe = /stream\r?\n([\s\S]*?)\nendstream/g;
+  while ((m = streamRe.exec(qdf))) streams.push(m[1]);
+  return [visible, qdf, ...uris, ...streams].join("\n");
 }
 
 function fileText(path) {
   if (extname(path).toLowerCase() !== ".pdf") return readFileSync(path, "utf8");
-  return execFileSync("pdftotext", [path, "-"], { encoding: "utf8" });
+  return pdfScanText(path);
 }
 
 // Private-name scan: the private org name, the night alias and the banned
@@ -94,7 +125,14 @@ function fileText(path) {
 // so this file does not contain the literals.
 const privateName = new RegExp(["Ar", "nova"].join(""), "i");
 const privateAlias = new RegExp(["at", "eck"].join(""), "i");
-const publicAlias = new RegExp(["King", "Whisper"].join("\\s+"), "i");
+const publicAlias = new RegExp(
+  [
+    ["King", "Whisper"].join(""),
+    ["King", "Whisper"].join("-"),
+    ["King", "Whisper"].join("\\s+"),
+  ].join("|"),
+  "i",
+);
 // Company identifiers on a personal portfolio, built from pieces so this
 // file does not contain the literals. A leading word boundary on the short
 // name avoids matching place names that only contain it as a suffix.
@@ -166,6 +204,8 @@ function run() {
   }
   console.log(`published check passed (${label}; phone; names; paths)`);
 }
+
+export { hasPhone, hasName, fileText, pdfScanText, textVariants, personalPhone, anyTel, plus48Phone, publicAlias };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   run();
