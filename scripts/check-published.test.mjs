@@ -123,8 +123,8 @@ test("public alias: closed, hyphenated, and spaced forms fail; parts alone do no
   assert.equal(hasName(W), false);
 });
 
-test("company and private names fail; Uvira and museovirasto do not", () => {
-  assert.equal(hasName(company), true);
+test("private names fail; the public studio name, Uvira, and museovirasto do not", () => {
+  assert.equal(hasName(company), false);
   assert.equal(hasName(org), true);
   assert.equal(hasName(alt), true);
   assert.equal(hasName(night), true);
@@ -158,9 +158,9 @@ test("positive: compressed PDF tel: annotation is flagged even when raw bytes hi
   assert.ok(hits.some((l) => l.includes("personal phone") || l.includes("phone")), hits);
 });
 
-test("positive: visible phone or company name inside a PDF is flagged", () => {
+test("positive: visible phone or private name inside a PDF is flagged", () => {
   const phonePdf = makePdf({ text: personal });
-  const namePdf = makePdf({ text: "Role at " + company });
+  const namePdf = makePdf({ text: "Role at " + org });
   const aliasPdf = makePdf({ text: K + W });
   assert.ok(pdfPhoneHits(writeTempPdf(phonePdf)).some((l) => l.includes("phone")));
   assert.ok(pdfNameHits(writeTempPdf(namePdf)).some((l) => l.includes("private name")));
