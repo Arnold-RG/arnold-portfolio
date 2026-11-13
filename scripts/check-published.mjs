@@ -25,11 +25,17 @@ const DIR_SKIP = new Set([".git"]);
 
 const personalPhone = /(\+?48)?[\s().\/-]*575[\s().\/-]*217[\s().\/-]*930/;
 const personalTel = /tel:\+?48/i;
-// Any tel: URI (not only those already written as tel:+48). A leading
-// letter is excluded so words like "hotel:" are not flagged.
-const anyTel = /(?<![A-Za-z])tel:/i;
-// Phone-like +48 numbers (country code plus at least two digits).
+// Any +48 number (country code plus at least two digits) is disallowed.
 const plus48Phone = /\+48[\s().\/-]*\d{2,}/;
+// The public Hamwe office number is the only telephone that may appear,
+// including as a tel: URI.
+const officeDigits = ["250", "794", "607", "518"].join("");
+const officeTelSource =
+  "(?:tel:\\s*)?\\+?" + ["250", "794", "607", "518"].join("[\\s().\\/-]*");
+// In JS/HTML/text, tel: counts only when a real phone pattern follows
+// (so React's tel:!0 and template tel:${...} are ignored).
+const telThenPhone = /(?<![A-Za-z])tel:\s*(?:\+|\(\s*\+?|\d)/i;
+
 const NAMED_ENTITIES = {
   amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: "\u00a0", plus: "+", colon: ":",
   sol: "/", lpar: "(", rpar: ")", period: ".", hyphen: "-", dash: "-", ndash: "\u2013", mdash: "\u2014",
@@ -85,15 +91,103 @@ function textVariants(text) {
   return [text, decoded, stripTags(text), stripTags(decoded), normalize(decode(stripTags(text)))];
 }
 
-function hasPhone(text) {
-  return textVariants(text).some(
-    (t) =>
-      personalPhone.test(t) ||
-      personalTel.test(t) ||
-      anyTel.test(t) ||
-      plus48Phone.test(t),
-  );
+function stripOffice(text) {
+  return text.replace(new RegExp(officeTelSource, "gi"), " ");
 }
+
+function officeIn(fragment) {
+  return fragment.replace(/\D/g, "") === officeDigits;
+}
+
+function hasDisallowedTelUri(text) {
+  const re = /\/URI\s*\(((?:\\.|[^\\)])*)\)/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const uri = m[1].replace(/\\([()\\])/g, "$1").trim();
+    if (/^tel:/i.test(uri) && !officeIn(uri)) return true;
+  }
+  return false;
+}
+
+function hasPhone(text, { pdf = false } = {}) {
+  return textVariants(text).some((t) => {
+    const rest = stripOffice(t);
+    if (personalPhone.test(rest) || personalTel.test(rest) || plus48Phone.test(rest)) {
+      return true;
+    }
+    if (pdf) return hasDisallowedTelUri(t);
+    return telThenPhone.test(rest);
+  });
+}
+
+// Published-output email scan: the only allowed personal address is
+// the public resume address. Consumer-mail domains otherwise fail.
+// Organisation addresses and obvious placeholders / library strings
+// are left alone.
+const allowedPersonalEmail = ["rurangwaarnold", "32", "@gmail.com"].join("");
+const personalMailDomains = new RegExp(
+  "@(?:" +
+    [
+      "gmail", "googlemail", "yahoo", "ymail", "hotmail", "outlook",
+      "live", "msn", "icloud", "me", "mac", "protonmail", "proton",
+      "aol", "gmx", "zoho", "yandex", "mail",
+    ].join("|") +
+    ")\\.(?:com|me|ru|de|co\\.\\w{2})\\b",
+  "i",
+);
+const placeholderEmail = new RegExp(
+  "^(?:you|user|name|foo|bar|test|someone|placeholder)@|@(?:example\\.(?:com|org|net)|email\\.com|test\\.com|localhost|invalid)\\b",
+  "i",
+);
+const emailFinder = /(?:mailto:)?([A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,})/g;
+
+function foundEmails(text) {
+  const out = [];
+  for (const variant of textVariants(text)) {
+    const re = new RegExp(emailFinder.source, "gi");
+    let m;
+    while ((m = re.exec(variant))) out.push({ raw: m[0], email: m[1].toLowerCase() });
+  }
+  return out;
+}
+
+function isLibraryOrPlaceholder(email, raw) {
+  if (placeholderEmail.test(email)) return true;
+  if (/@[A-Za-z0-9.\-]+\/[A-Za-z]/.test(raw)) return true;
+  if (/@\d/.test(email) && !email.includes(".")) return true;
+  return false;
+}
+
+function isPersonalMail(email) {
+  const at = email.lastIndexOf("@");
+  if (at < 0) return false;
+  return personalMailDomains.test("@" + email.slice(at + 1));
+}
+
+function hasDisallowedEmail(text) {
+  for (const { raw, email } of foundEmails(text)) {
+    if (email === allowedPersonalEmail.toLowerCase()) continue;
+    if (isLibraryOrPlaceholder(email, raw)) continue;
+    if (isPersonalMail(email)) return true;
+    if (/^mailto:/i.test(raw) && email !== allowedPersonalEmail.toLowerCase()) {
+      // mailto: to a personal-looking address already returned above;
+      // mailto: to an org address is allowed.
+      continue;
+    }
+  }
+  return false;
+}
+
+function allowedOrgEmails(text) {
+  const orgs = new Set();
+  for (const { email } of foundEmails(text)) {
+    if (email === allowedPersonalEmail.toLowerCase()) continue;
+    if (isLibraryOrPlaceholder(email, email)) continue;
+    if (!isPersonalMail(email)) orgs.add(email);
+  }
+  return [...orgs].sort();
+}
+
 
 // PDFs: visible text via pdftotext, plus decompressed objects via
 // qpdf --qdf (annotations, /URI values, and stream text). Missing
@@ -180,11 +274,12 @@ export function privacyProblems(scanRoot, { repoRoot = true } = {}) {
         walk(path);
         continue;
       }
-      if (BINARY.has(extname(path).toLowerCase())) continue;
+      const ext = extname(path).toLowerCase();
+      if (BINARY.has(ext)) continue;
       const text = fileText(path);
       if (hasName(text)) found.push(`${rel}: contains a private name`);
-      if (hasPhone(text)) found.push(`${rel}: contains the personal phone number`);
-      const ext = extname(path).toLowerCase();
+      if (hasPhone(text, { pdf: ext === ".pdf" })) found.push(`${rel}: contains the personal phone number`);
+      if (hasDisallowedEmail(text)) found.push(`${rel}: contains a disallowed email address`);
       if (ext !== ".pdf" && hasLocalPath(text)) found.push(`${rel}: contains a local file path`);
     }
   };
@@ -205,7 +300,7 @@ function run() {
   console.log(`published check passed (${label}; phone; names; paths)`);
 }
 
-export { hasPhone, hasName, fileText, pdfScanText, textVariants, personalPhone, anyTel, plus48Phone, publicAlias };
+export { hasPhone, hasName, hasDisallowedEmail, fileText, pdfScanText, textVariants, personalPhone, plus48Phone, telThenPhone, publicAlias, allowedOrgEmails, allowedPersonalEmail };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   run();

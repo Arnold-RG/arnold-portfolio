@@ -9,6 +9,8 @@ import {
   fileText,
   hasPhone,
   hasName,
+  hasDisallowedEmail,
+  allowedOrgEmails,
   privacyProblems,
 } from "./check-published.mjs";
 
@@ -229,4 +231,52 @@ test("missing pdftotext fails closed", () => {
   } finally {
     process.env.PATH = prev;
   }
+});
+
+test("hasPhone: React tel:!0 and the office tel: URI are allowed; any +48 still fails", () => {
+  assert.equal(hasPhone("search:!0,tel:!0,text:!0"), false);
+  assert.equal(hasPhone("href:`tel:${Hn.tel}`"), false);
+  const officeTel = ["te", "l:+"].join("") + ["250", "794", "607", "518"].join("");
+  assert.equal(hasPhone(officeTel), false);
+  assert.equal(hasPhone(officeTel, { pdf: true }), false);
+  assert.equal(hasPhone(`${tel}${plus48}555111222`), true);
+  assert.equal(hasPhone(plus48 + " 111-22-33"), true);
+});
+
+test("email: only the official personal address is allowed; other Gmail and mailto fail", () => {
+  const official = ["rurangwaarnold", "32", "@gmail.com"].join("");
+  const other = ["abcdefg.person", "32", "@gmail.com"].join("");
+  assert.equal(hasDisallowedEmail("mailto:" + official), false);
+  assert.equal(hasDisallowedEmail(official), false);
+  assert.equal(hasDisallowedEmail("mailto:" + other), true);
+  assert.equal(hasDisallowedEmail(other), true);
+  assert.equal(hasDisallowedEmail("circle@hamwe.rw"), false);
+  assert.equal(hasDisallowedEmail("you@email.com"), false);
+  assert.equal(hasDisallowedEmail("user@example.com"), false);
+  assert.deepEqual(allowedOrgEmails("write circle@hamwe.rw please"), ["circle@hamwe.rw"]);
+});
+
+test("positive: PDF mailto: to another Gmail is flagged", () => {
+  const other = ["abcdefg.person", "32", "@gmail.com"].join("");
+  const dirty = makePdf({ text: "Email", uri: "mailto:" + other });
+  const path = writeTempPdf(dirty);
+  const hits = pdfPhoneHits(path);
+  // email hits go through the same walk as phone on IO (phoneProblems) / privacyProblems on AP
+  const emailHits = hits.filter((l) => l.includes("email") || l.includes("phone") || l.includes("mailto"));
+  // On IO, phoneProblems now also reports email. On AP, privacyProblems does.
+  // Either way the walk used by pdfPhoneHits should include email now.
+  assert.ok(
+    hits.some((l) => l.includes("email") || l.includes("disallowed")),
+    hits,
+  );
+});
+
+test("negative: official mailto in a PDF is accepted", () => {
+  const official = ["rurangwaarnold", "32", "@gmail.com"].join("");
+  const clean = makePdf({ text: "Email only", uri: "mailto:" + official });
+  const path = writeTempPdf(clean);
+  assert.deepEqual(
+    pdfPhoneHits(path).filter((l) => l.includes("email") || l.includes("disallowed") || l.includes("phone")),
+    [],
+  );
 });
