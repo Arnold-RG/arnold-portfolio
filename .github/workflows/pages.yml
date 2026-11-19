@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html 404.html robots.txt sitemap.xml SECURITY.md LICENSE _site/
-          cp -R assets Folio _site/
+          cp -R assets Folio demos _site/
           touch _site/.nojekyll
 
       - name: Setup Node
