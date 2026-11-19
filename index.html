@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <title>Arnold Rurangwa — Computer Engineer</title>
+  <meta name="description" content="Computer engineer in Kraków. Software, cybersecurity, networks, and applied machine learning. Selected work, experience, and contact.">
+  <meta name="author" content="Arnold Rurangwa">
+  <meta name="theme-color" content="#080c12">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://arnold-rg.github.io/arnold-portfolio/">
+  <link rel="icon" href="./assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Arnold Rurangwa">
+  <meta property="og:title" content="Arnold Rurangwa — Computer Engineer">
+  <meta property="og:description" content="Computer engineer in Kraków. Software, cybersecurity, networks, and applied machine learning.">
+  <meta property="og:url" content="https://arnold-rg.github.io/arnold-portfolio/">
+  <meta property="og:image" content="https://arnold-rg.github.io/arnold-portfolio/assets/portrait.png">
+  <meta property="og:image:alt" content="Portrait of Arnold Rurangwa">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arnold Rurangwa — Computer Engineer">
+  <meta name="twitter:description" content="Computer engineer in Kraków. Software, cybersecurity, networks, and applied machine learning.">
+  <meta name="twitter:image" content="https://arnold-rg.github.io/arnold-portfolio/assets/portrait.png">
+  <meta name="twitter:image:alt" content="Portrait of Arnold Rurangwa">
+  <link rel="me" href="https://github.com/Arnold-RG">
+  <link rel="preload" href="./assets/fonts/fraunces-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/portrait.png" as="image">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        var theme = stored === "dark" || stored === "light"
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.setAttribute("data-theme", theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#080c12" : "#edf1f7");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="./assets/site/site-base.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Arnold Rurangwa",
+    "jobTitle": "Computer Engineer",
+    "url": "https://arnold-rg.github.io/arnold-portfolio/",
+    "image": "https://arnold-rg.github.io/arnold-portfolio/assets/portrait.png",
+    "email": "mailto:rurangwaarnold32@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kraków",
+      "addressCountry": "PL"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Wrocławska Akademia Biznesu"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Cognizant"
+    },
+    "sameAs": [
+      "https://github.com/Arnold-RG",
+      "https://www.linkedin.com/in/rurangwa-arnold-53b90520b/"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="arn-skip skip-link" href="#content">Skip to content</a>
+  <canvas id="stage" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">
+        <img class="brand-mark" src="./assets/logo.png" width="32" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">Arnold Rurangwa</span>
+          <span class="brand-meta">Computer engineer</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#work" data-section="work">Work</a></li>
+          <li><a href="#skills" data-section="skills">Skills</a></li>
+          <li><a href="#experience" data-section="experience">Experience</a></li>
+          <li><a href="#contact" data-section="contact">Contact</a></li>
+        </ul>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-resume" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Resume</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer">
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="nav-drawer" id="nav-drawer" hidden>
+      <nav aria-label="Mobile">
+        <ul class="drawer-links">
+          <li><a href="#work" data-section="work">Work</a></li>
+          <li><a href="#skills" data-section="skills">Skills</a></li>
+          <li><a href="#experience" data-section="experience">Experience</a></li>
+          <li><a href="#contact" data-section="contact">Contact</a></li>
+          <li><a href="#certificates" data-section="certificates">Certificates</a></li>
+          <li><a href="#about" data-section="about">About</a></li>
+        </ul>
+        <a class="btn btn-primary drawer-resume" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero arn-hero" aria-labelledby="hero-title">
+      <div class="hero-bleed" aria-hidden="true">
+        <img class="hero-atmosphere" src="./assets/hero-atmosphere.png" width="1600" height="1000" alt="" decoding="async">
+        <img class="hero-portrait-bleed" src="./assets/portrait.png" width="313" height="331" alt="" fetchpriority="high" decoding="async">
+        <div class="hero-veil"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy arn-stagger">
+          <p class="arn-brand eyebrow arn-reveal">
+            <span>Arnold Rurangwa</span>
+            <span class="eyebrow-dot" aria-hidden="true">·</span>
+            <span>Computer engineer · Kraków</span>
+          </p>
+          <h1 class="hero-title arn-h1 arn-reveal" id="hero-title" data-scramble>
+            <span class="name-given">Arnold</span>
+            <span class="name-family">Rurangwa</span>
+          </h1>
+          <p class="hero-lede arn-lead arn-reveal">
+            I build software that has to hold up. Household ledgers, lab tools, shopfronts, maps, and a security desk. Trained in cybersecurity and computer networks.
+          </p>
+          <div class="hero-actions arn-cta arn-reveal">
+            <a class="btn btn-primary magnetic arn-btn arn-btn-primary" href="#work">See the work</a>
+            <a class="btn btn-ghost magnetic arn-btn arn-btn-ghost" href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="facts-band" aria-label="Quick facts">
+      <div class="wrap">
+        <dl class="facts">
+          <div>
+            <dt>Based</dt>
+            <dd>Kraków, Poland</dd>
+          </div>
+          <div>
+            <dt>Role</dt>
+            <dd>Data Operator · Cognizant</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Computer engineering</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="chapter">
+          <p class="chapter-kicker" aria-hidden="true"><span>Work · 01</span></p>
+          <h2 id="work-title">Selected work</h2>
+          <p class="lede">Fourteen public projects, on a ring that keeps turning. Drag it to hold one still. A live link where one exists, and the source either way.</p>
+        </header>
+
+        <div class="orbit" id="orbit">
+          <div class="orbit-scene" tabindex="0" aria-label="Project ring. Drag to turn it, or use the previous and next buttons.">
+            <div class="orbit-ring" id="orbit-ring">
+          <article class="orbit-card project project-lead" style="--i:0" data-title="This portfolio">
+            <span class="project-num" aria-hidden="true">01</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>This portfolio</h3>
+                <p class="project-stack">HTML · CSS</p>
+              </div>
+              <p>The public folio: the work, the short path, and a way to get in touch.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/arnold-portfolio/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/arnold-portfolio" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:1" data-title="Hamwe Tourism">
+            <span class="project-num" aria-hidden="true">02</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Hamwe Tourism</h3>
+                <p class="project-stack">React · TypeScript</p>
+              </div>
+              <p>A storefront for hosted tours in Rwanda: catalogue, booking, maps, and tickets.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/hamwe/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/hamwe" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:2" data-title="Study Atlas">
+            <span class="project-num" aria-hidden="true">03</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Study Atlas</h3>
+                <p class="project-stack">Python</p>
+              </div>
+              <p>A ten-stage study path with quizzes, tests, and projects, lined up with roadmap.sh.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/study-atlas/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/study-atlas" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:3" data-title="Elvora">
+            <span class="project-num" aria-hidden="true">04</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Elvora</h3>
+                <p class="project-stack">Flutter · Dart</p>
+              </div>
+              <p>An on-device health coach for food, training, hydration, and recovery. It runs on iOS, Android, and the web.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/elvora/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/elvora" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:4" data-title="STANS">
+            <span class="project-num" aria-hidden="true">05</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>STANS</h3>
+                <p class="project-stack">TypeScript</p>
+              </div>
+              <p>A traffic desk on OpenStreetMap: Nominatim search, OSRM routes, GPS, weather, and Overpass points of interest.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/STANS/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/STANS" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:5" data-title="WorldShield SOC">
+            <span class="project-num" aria-hidden="true">06</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>WorldShield SOC</h3>
+                <p class="project-stack">JavaScript</p>
+              </div>
+              <p>A SOC dashboard with near-real-time cached threat activity from public feeds.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/worldshield-soc/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/worldshield-soc" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:6" data-title="Boutique La Différence">
+            <span class="project-num" aria-hidden="true">07</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Boutique La Différence</h3>
+                <p class="project-stack">HTML · JavaScript</p>
+              </div>
+              <p>A shop site for the supermarket in Zindiro, Kigali: catalogue, categories, and the counter.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/Boutique-la-difference/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/Boutique-la-difference" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:7" data-title="AbroadCost">
+            <span class="project-num" aria-hidden="true">08</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>AbroadCost</h3>
+                <p class="project-stack">JavaScript</p>
+              </div>
+              <p>A country budget planner for 195 countries: living costs, salaries, and travel.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/AbroadCost/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/AbroadCost" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:8" data-title="2daymovie">
+            <span class="project-num" aria-hidden="true">09</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>2daymovie</h3>
+                <p class="project-stack">Python</p>
+              </div>
+              <p>Official film and series trailers, and where to watch legally. No full films are hosted.</p>
+              <ul class="project-links">
+                <li><a href="https://twodaymovie.onrender.com/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://arnold-rg.github.io/2daymovie/" target="_blank" rel="noopener noreferrer">Pages<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/2daymovie" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:9" data-title="Kingdom Life Kraków">
+            <span class="project-num" aria-hidden="true">10</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Kingdom Life Kraków</h3>
+                <p class="project-stack">HTML</p>
+              </div>
+              <p>Public site for the English-speaking church in Kraków. Sundays at noon, at Hotel Centrum.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/kingdom-life-krakow/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/kingdom-life-krakow" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:10" data-title="Peakwise">
+            <span class="project-num" aria-hidden="true">11</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Peakwise</h3>
+                <p class="project-stack">Python · ML</p>
+              </div>
+              <p>An AI-assisted reading of LC-MS/MS peaks into candidate structures and SMILES. Built as a lab tool.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/peakwise/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/peakwise" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:11" data-title="Our Money Hub">
+            <span class="project-num" aria-hidden="true">12</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Our Money Hub</h3>
+                <p class="project-stack">JavaScript</p>
+              </div>
+              <p>A household ledger. Shared income, savings, expenses, and plans. The default currency is the złoty.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/our-money-hub/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/our-money-hub" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:12" data-title="RAGI">
+            <span class="project-num" aria-hidden="true">13</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>RAGI</h3>
+                <p class="project-stack">TypeScript</p>
+              </div>
+              <p>A private secretary. The code is public, and each account's notes stay encrypted.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/ragi/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/ragi" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:13" data-title="Vira">
+            <span class="project-num" aria-hidden="true">14</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>Vira</h3>
+                <p class="project-stack">HTML · CSS · JavaScript</p>
+              </div>
+              <p>A studio site for websites, apps, games, networks, internet setup, tech support and AI, with security and quality checks on every project.</p>
+              <ul class="project-links">
+                <li><a href="https://arnold-rg.github.io/vira/" target="_blank" rel="noopener noreferrer">Live<span class="sr-only"> (opens in a new tab)</span></a></li>
+                <li><a href="https://github.com/Arnold-RG/vira" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="orbit-card project" style="--i:14" data-title="GitHub profile">
+            <span class="project-num" aria-hidden="true">15</span>
+            <div class="project-main">
+              <div class="project-heading">
+                <h3>GitHub profile</h3>
+                <p class="project-stack">Markdown</p>
+              </div>
+              <p>The public profile: the short path, and the list of the work.</p>
+              <ul class="project-links">
+                <li><a href="https://github.com/Arnold-RG" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              </ul>
+            </div>
+          </article>
+            </div>
+          </div>
+          <div class="orbit-controls">
+            <button type="button" class="orbit-btn" id="orbit-prev">Previous</button>
+            <p class="orbit-status" id="orbit-status">01  This portfolio</p>
+            <button type="button" class="orbit-btn" id="orbit-next">Next</button>
+          </div>
+          <p class="sr-only" id="orbit-live" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <header class="chapter">
+          <p class="chapter-kicker" aria-hidden="true"><span>Skills · 02</span></p>
+          <h2 id="skills-title">Toolkit</h2>
+          <p class="lede">What I use on the work, grouped the way I reach for it.</p>
+        </header>
+
+        <div class="skill-groups">
+          <section class="skill-group" data-reveal>
+            <h3>AI and machine learning</h3>
+            <ul>
+              <li>Applied AI products</li>
+              <li>LangGraph · agent workflows</li>
+              <li>On-device / edge AI</li>
+              <li>Scientific ML tooling</li>
+              <li>FastAPI model services</li>
+              <li>AI governance &amp; policy</li>
+              <li>Prompted systems</li>
+              <li>Python for ML</li>
+            </ul>
+          </section>
+          <section class="skill-group" data-reveal>
+            <h3>Automation</h3>
+            <ul>
+              <li>Scripting &amp; automation</li>
+              <li>Python · Bash</li>
+              <li>CI/CD pipelines</li>
+              <li>GitHub Actions</li>
+              <li>REST API integration</li>
+              <li>Workflow design</li>
+              <li>Terraform (IaC)</li>
+              <li>Docker</li>
+            </ul>
+          </section>
+          <section class="skill-group" data-reveal>
+            <h3>Data engineering</h3>
+            <ul>
+              <li>Data validation &amp; quality</li>
+              <li>SQL · MySQL</li>
+              <li>ETL-style processing</li>
+              <li>Structured / semi-structured data</li>
+              <li>JSON · APIs</li>
+              <li>Inventory &amp; record systems</li>
+              <li>Exception handling</li>
+              <li>Documentation</li>
+            </ul>
+          </section>
+          <section class="skill-group" data-reveal>
+            <h3>Software and platforms</h3>
+            <ul>
+              <li>JavaScript · TypeScript</li>
+              <li>React</li>
+              <li>Flutter · Dart</li>
+              <li>HTML5 · CSS3</li>
+              <li>Microsoft Azure</li>
+              <li>Linux</li>
+              <li>Git · GitHub</li>
+              <li>Networking foundations</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <header class="chapter">
+          <p class="chapter-kicker" aria-hidden="true"><span>Experience · 03</span></p>
+          <h2 id="experience-title">Experience</h2>
+          <p class="lede">Most recent first. The Escola internship overlapped the logistics job and the degree.</p>
+        </header>
+
+        <ol class="roles">
+          <li class="role" data-reveal>
+            <div class="role-when">
+              <p class="role-dates">Sep 2025 – Present</p>
+              <p class="role-place">Kraków, Poland</p>
+            </div>
+            <div class="role-body">
+              <h3>Data Operator</h3>
+              <p class="role-org">Cognizant</p>
+              <ul>
+                <li>Review, validate, and maintain structured and semi-structured data for accuracy and completeness.</li>
+                <li>Find inconsistencies, duplicates, and gaps, then apply corrections under defined quality rules.</li>
+                <li>Process high-volume workflows, investigate exceptions, and improve recurring error patterns with the team.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="role" data-reveal>
+            <div class="role-when">
+              <p class="role-dates">May 2022 – Aug 2025</p>
+              <p class="role-place">Wrocław, Poland</p>
+            </div>
+            <div class="role-body">
+              <h3>Logistics Specialist Operator</h3>
+              <p class="role-org">LG Energy Solution</p>
+              <ul>
+                <li>Prepared materials and finished goods for movement and shipment with full label and quantity checks.</li>
+                <li>Used barcode and inventory systems to keep stock records accurate under production pressure.</li>
+                <li>Coordinated with logistics, warehouse, quality, and production for on-time, traceable delivery.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="role" data-reveal>
+            <div class="role-when">
+              <p class="role-dates">Feb 2023 – Jul 2023</p>
+              <p class="role-place">Warsaw, Poland (remote)</p>
+            </div>
+            <div class="role-body">
+              <h3>E-Learning Content Developer</h3>
+              <p class="role-org">Escola S.A · Internship</p>
+              <ul>
+                <li>Built clear digital learning materials, tutorials, and exercises for online courses.</li>
+                <li>Researched technical topics and turned them into structured learner resources.</li>
+                <li>Reviewed content for accuracy and clarity while shipping against remote deadlines.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="role" data-reveal>
+            <div class="role-when">
+              <p class="role-dates">Sep 2021 – Feb 2022</p>
+              <p class="role-place">Kigali, Rwanda</p>
+            </div>
+            <div class="role-body">
+              <h3>Technical Support Specialist</h3>
+              <p class="role-org">I&amp;M Bank · Internship</p>
+              <ul>
+                <li>Troubleshot hardware, software, OS, and network issues for bank employees.</li>
+                <li>Configured workstations and peripherals; handled access resets under IT security policy.</li>
+                <li>Documented and escalated first-level issues to infrastructure teams when needed.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="certificates" aria-labelledby="certificates-title">
+      <div class="wrap">
+        <header class="chapter">
+          <p class="chapter-kicker" aria-hidden="true"><span>Certificates</span></p>
+          <h2 id="certificates-title">Certificates</h2>
+          <p class="lede">Finished credentials. The issuer is named when I have it.</p>
+        </header>
+
+        <ul class="certs">
+          <li data-reveal>
+            <p class="cert-name">AI Augmented Engineering Lead — LangGraph · Azure with GHCP</p>
+            <p class="cert-org">Professional credential</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">Oracle Cloud Infrastructure Foundations</p>
+            <p class="cert-org">Oracle</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">CCNA: Enterprise Networking, Security, and Automation</p>
+            <p class="cert-org">Cisco Networking Academy</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">AI Essentials: Policy, Governance and Use</p>
+            <p class="cert-org">Professional credential</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">Ethical Hacker</p>
+            <p class="cert-org">Cisco Networking Academy</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">Introduction to Cybersecurity</p>
+            <p class="cert-org">Cisco Networking Academy</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">Exploring IoT with Cisco Packet Tracer</p>
+            <p class="cert-org">Cisco Networking Academy</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">Python Essentials 2</p>
+            <p class="cert-org">Python Institute</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">IT Help Desk Professional</p>
+            <p class="cert-org">Google Career Certificates</p>
+          </li>
+          <li data-reveal>
+            <p class="cert-name">The Complete Nmap Ethical Hacking Course</p>
+            <p class="cert-org">Udemy</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap about-layout">
+        <div class="about-main">
+          <header class="chapter">
+            <p class="chapter-kicker" aria-hidden="true"><span>About</span></p>
+            <h2 id="about-title">About</h2>
+          </header>
+          <div class="about-copy">
+            <p class="about-lead">I am a computer engineer. The work has been software, cybersecurity, networking, data analysis, and technical support.</p>
+            <p>I like a hard fault and a system that stays fixed. I live in Kraków. From 2022 to 2025 I studied computer engineering at Wrocławska Akademia Biznesu, in cybersecurity and computer networks.</p>
+          </div>
+          <article class="education" data-reveal>
+            <p class="edu-label">Education</p>
+            <h3>B.Sc. Computer Engineering — Cybersecurity &amp; Computer Networks</h3>
+            <p>Akademia Techniczno-Artystyczna · Wrocławska Akademia Biznesu (ATA Wrocław)</p>
+            <p class="edu-meta">Mar 2022 – Sep 2025 · Wrocław, Poland · Full-time</p>
+          </article>
+        </div>
+
+        <aside class="about-aside" aria-label="Languages and interests">
+          <section class="aside-block" data-reveal>
+            <h3>Languages</h3>
+            <ul class="langs">
+              <li>
+                <span class="lang-name">English</span>
+                <span class="lang-level">C1</span>
+                <span class="lang-bar" style="--level: 84%" aria-hidden="true"></span>
+              </li>
+              <li>
+                <span class="lang-name">Kinyarwanda</span>
+                <span class="lang-level">C2</span>
+                <span class="lang-bar" style="--level: 100%" aria-hidden="true"></span>
+              </li>
+              <li>
+                <span class="lang-name">French</span>
+                <span class="lang-level">C1</span>
+                <span class="lang-bar" style="--level: 84%" aria-hidden="true"></span>
+              </li>
+              <li>
+                <span class="lang-name">Swahili</span>
+                <span class="lang-level">B2</span>
+                <span class="lang-bar" style="--level: 70%" aria-hidden="true"></span>
+              </li>
+            </ul>
+          </section>
+          <section class="aside-block" data-reveal>
+            <h3>Interests</h3>
+            <ul class="interests">
+              <li>Building and recreating systems</li>
+              <li>Swimming, gym, basketball</li>
+              <li>Tech meetups &amp; workshops</li>
+              <li>Music, travel, personal growth</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-layout">
+        <header class="chapter">
+          <p class="chapter-kicker" aria-hidden="true"><span>Contact · 04</span></p>
+          <h2 id="contact-title">Let’s talk</h2>
+          <p class="lede">For a role, a collaboration, or a technical question — email and phone both reach me in Kraków.</p>
+        </header>
+        <address class="contact-card arn-reveal">
+          <p class="contact-invite">Open for engineering roles, applied AI, and systems work.</p>
+          <div class="email-row">
+            <a class="email-link" id="email-link" href="mailto:rurangwaarnold32@gmail.com">rurangwaarnold32@gmail.com</a>
+            <button type="button" class="copy-btn" id="copy-email">Copy address</button>
+          </div>
+          <div class="contact-cta">
+            <a class="btn btn-primary magnetic" href="mailto:rurangwaarnold32@gmail.com">Email Arnold</a>
+          </div>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-label">GitHub</span>
+              <a href="https://github.com/Arnold-RG" target="_blank" rel="noopener noreferrer">Arnold-RG<span class="sr-only"> (opens in a new tab)</span></a>
+            </li>
+            <li>
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/rurangwa-arnold-53b90520b/" target="_blank" rel="noopener noreferrer">rurangwa-arnold<span class="sr-only"> (opens in a new tab)</span></a>
+            </li>
+            <li>
+              <span class="contact-label">Location</span>
+              <span>Kraków, Poland</span>
+            </li>
+            <li>
+              <span class="contact-label">Resume</span>
+              <a href="./assets/Rurangwa-Arnold-Resume.pdf" download>Download PDF</a>
+            </li>
+          </ul>
+        </address>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-name">Arnold Rurangwa</p>
+      <p>© 2026 · Kraków, Poland</p>
+      <p class="footer-links">
+        <a href="https://github.com/Arnold-RG" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+        <a href="https://www.linkedin.com/in/rurangwa-arnold-53b90520b/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+        <a href="./assets/Rurangwa-Arnold-Resume.pdf" download>Resume</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="./assets/site/site-secure.js" defer></script>
+  <script src="./assets/stage.js" defer></script>
+  <script src="./assets/main.js" defer></script>
+</body>
+</html>

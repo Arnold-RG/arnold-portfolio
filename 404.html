@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Page not found — Arnold Rurangwa</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#080c12">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      background: #080c12;
+      color: #b8c4d9;
+      line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: env(safe-area-inset-top);
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #b8ff2e, #2ee6d6);
+    }
+    main {
+      width: min(40rem, calc(100% - 3rem));
+      margin: 18vh auto 4rem;
+    }
+    p.kicker {
+      margin: 0 0 1rem;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #b8ff2e;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #eef4ff;
+    }
+    p { margin: 1.25rem 0 0; max-width: 32rem; }
+    a {
+      color: #2ee6d6;
+      font-weight: 600;
+    }
+    a:hover { color: #b8ff2e; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">404</p>
+    <h1>This page is not here.</h1>
+    <p>Return to <a href="./">Arnold Rurangwa’s portfolio</a>.</p>
+  </main>
+</body>
+</html>
