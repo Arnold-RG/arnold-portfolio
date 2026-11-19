@@ -61,13 +61,6 @@ Use least privilege, documented trust boundaries and secret scanning. Never incl
 
 **Important:** This table defines the target quality process, not a claim that every check has passed. Kubernetes is optional and should be introduced only when real backend complexity and scale justify it.
 
-## Improvement roadmap
-
-1. Audit project links and current résumé content.
-2. Improve responsive presentation and WCAG-aligned accessibility.
-3. Run static link checks and Lighthouse-style performance review in release CI.
-4. Document Pages deployment and preview-before-publish approval process.
-
 ## Working on the project
 
 Keep changes small and reviewable. Update this README when commands or features change, attach test evidence to pull requests, maintain honest limitations and review licenses before adding assets. The repository owner approves release publication.
