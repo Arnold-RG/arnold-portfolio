@@ -233,10 +233,13 @@ const publicAlias = new RegExp(
 // alternate form stays blocked.
 const companyAlt = new RegExp(["an", "vi", "ra"].join(""), "i");
 
+// The agency name is an intentional public-facing project. Keep the
+// personal-alias and other private-name checks intact.
+const publicAgencyBrand = /ArnovaGroup/gi;
 const hasName = (text) =>
   textVariants(text).some(
     (t) =>
-      privateName.test(t) ||
+      privateName.test(t.replace(publicAgencyBrand, " ")) ||
       privateAlias.test(t) ||
       publicAlias.test(t) ||
       companyAlt.test(t),
