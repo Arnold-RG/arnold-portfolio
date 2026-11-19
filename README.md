@@ -64,3 +64,9 @@ Use least privilege, documented trust boundaries and secret scanning. Never incl
 ## Working on the project
 
 Keep changes small and reviewable. Update this README when commands or features change, attach test evidence to pull requests, maintain honest limitations and review licenses before adding assets. The repository owner approves release publication.
+
+## Creative agency showcase (November 2026)
+
+The homepage now includes a responsive ArnovaGroup concept collection, with links to the [Kigali business design gallery](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/). The new projects include distinct salon, café and fashion-retail prototypes; they are speculative prospect designs, **not paid client engagements**.
+
+The portfolio's existing engineering work, approved résumé page and contact details remain intact. The creative gallery uses accessible cards and reduced-motion support, and GitHub Pages must complete its workflow before new changes are visible.
