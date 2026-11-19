@@ -1933,3 +1933,25 @@ html[data-theme="light"] .hero-atmosphere {
     break-inside: avoid;
   }
 }
+
+/* 2026 creative direction: tactile editorial cards, accessible interaction and responsive agency gallery. */
+.arnova-feature{position:relative;isolation:isolate;background:linear-gradient(125deg,#101c19 0%,#1d3029 53%,#17231f 100%);color:#f5f1e9;overflow:hidden}
+.arnova-feature:before{content:"";position:absolute;z-index:-1;width:46rem;height:46rem;top:-23rem;right:-12rem;border-radius:50%;background:radial-gradient(circle,#9ad6a52c,transparent 70%);pointer-events:none}
+.arnova-feature .chapter-kicker,.arnova-feature .chapter-kicker span{color:#b4ddbb}
+.arnova-feature .chapter h2{max-width:21ch;line-height:1.07;letter-spacing:-.06em}
+.arnova-feature .lede{max-width:64ch;color:#c3d0c8}
+.arnova-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2.5rem}
+.arnova-tile{position:relative;display:flex;min-height:16rem;flex-direction:column;justify-content:space-between;gap:1.5rem;padding:clamp(1.4rem,2.6vw,2.4rem);border:1px solid #ffffff27;border-radius:1.15rem;background:linear-gradient(135deg,#e3cfc2,#c3a08f);color:#332720;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.arnova-tile:nth-child(3){background:linear-gradient(135deg,#d8e4c5,#a4b78c);color:#243a2b}
+.arnova-tile:nth-child(4){background:linear-gradient(135deg,#e8ded5,#b7aaa3);color:#332b2c}
+.arnova-tile:hover{transform:translateY(-6px);box-shadow:0 22px 50px #0005}
+.arnova-tile:focus-visible{outline:3px solid #e8bd8f;outline-offset:4px}
+.arnova-tile-lead{grid-column:span 3;min-height:20rem;background:radial-gradient(circle at 80% 30%,#668a73 0%,transparent 34%),linear-gradient(110deg,#294d3c,#1a342b);color:#f4f6eb}
+.arnova-index{font-size:.7rem;letter-spacing:.2em;font-weight:800;text-transform:uppercase}
+.arnova-tile strong{font-size:clamp(1.65rem,2.5vw,2.7rem);line-height:1.15;letter-spacing:-.055em}
+.arnova-tile-lead strong{font-size:clamp(2.5rem,5vw,5rem);letter-spacing:-.075em}
+.arnova-action{font-size:.85rem;font-weight:700;align-self:flex-start;border-bottom:1px solid currentColor;padding-bottom:.3rem}
+.arnova-disclosure{margin:1.3rem 0 0;font-size:.8rem;line-height:1.7;color:#bdcbc1}
+@media(max-width:760px){.arnova-grid{grid-template-columns:1fr 1fr}.arnova-tile-lead{grid-column:span 2}.arnova-tile{min-height:14rem}.arnova-tile:last-child{grid-column:span 2}}
+@media(max-width:480px){.arnova-grid{grid-template-columns:1fr}.arnova-tile,.arnova-tile-lead,.arnova-tile:last-child{grid-column:auto}.arnova-tile-lead{min-height:18rem}.arnova-tile strong{font-size:2rem}}
+@media(prefers-reduced-motion:reduce){.arnova-tile{transition:none}.arnova-tile:hover{transform:none}}
