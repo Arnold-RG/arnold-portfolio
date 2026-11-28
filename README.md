@@ -15,7 +15,6 @@ Personal computer-engineering portfolio and résumé website presenting projects
 | Location | Purpose |
 | --- | --- |
 | `index.html` | Main portfolio landing page |
-| `resume.html` | Résumé view |
 | `assets/` | Styles, media, visual assets |
 | `Folio/` | Additional portfolio materials |
 | `scripts/` | Supporting project scripts |
